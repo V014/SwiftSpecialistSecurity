@@ -24,14 +24,24 @@
                                     <div class="text-center">
                                         <h4 class="text-dark mb-4">Welcome Back!</h4>
                                     </div>
-                                    <form class="user">
-                                        <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail-1" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email"></div>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="password"></div>
+                                    <form class="user" method="POST" action="php/login.php">
                                         <div class="mb-3">
-                                            <div class="dropdown"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Role</button>
-                                                <div class="dropdown-menu"><a class="dropdown-item" href="#">Admin</a><a class="dropdown-item" href="#">Client</a><a class="dropdown-item" href="#">Squad</a><a class="dropdown-item" href="#">Unit</a></div>
+                                            <input class="form-control form-control-user" type="email" id="Email" aria-describedby="emailHelp" placeholder="Email Address..." name="email">
+                                        </div>
+                                        <div class="mb-3">
+                                            <input class="form-control form-control-user" type="password" id="Password" placeholder="Password" name="password">
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="form-group">
+                                                <!--<label for="Role">Role</label>-->
+                                                <select class="form-control form-control-user" id="Role">
+                                                <option>Admin</option>
+                                                <option>Client</option>
+                                                <option>Squad</option>
+                                                </select>
                                             </div>
-                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit">Login</button>
+                                        </div>
+                                        <button class="btn btn-primary d-block btn-user w-100" type="submit" value="submit">Login</button>
                                         <hr>
                                     </form>
                                 </div>
