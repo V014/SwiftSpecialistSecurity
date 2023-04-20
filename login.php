@@ -1,11 +1,10 @@
 <?php
 session_start();
 if(isset($_SESSION['reply'])){
-    if($_SESSION['reply'] === "error"){
+    if($_SESSION['reply'] === "invalid"){
         $_SESSION['attempts'] += 1;
         $reply = "Invalid credentials!";
     }
-
 }
 ?>
 <!DOCTYPE html>
@@ -35,6 +34,10 @@ if(isset($_SESSION['reply'])){
                                         <h4 class="text-dark mb-4">Swift Specialist Secuirty</h4>
                                     </div>
                                     <form class="user" method="POST" action="php/login.php">
+                                    <!-- Response to user if credentials are invalid-->
+                                    <?php if (isset($_SESSION['reply'])){ ?>
+                                        <p style="color: red; text-align: center;"><?= $reply; ?></p>
+                                    <?php } else {  /*do nothing*/ }?>
                                         <div class="mb-3">
                                             <input class="form-control form-control-user" type="email" id="Email" aria-describedby="emailHelp" placeholder="Email Address..." name="email">
                                         </div>
@@ -52,7 +55,8 @@ if(isset($_SESSION['reply'])){
                                             </div>
                                         </div>
                                         <button class="btn btn-primary d-block btn-user w-100" type="submit" value="submit">Login</button>
-                                        <hr>
+                                        <?php unset($_SESSION['reply']); ?>
+                                        
                                     </form>
                                 </div>
                             </div>
