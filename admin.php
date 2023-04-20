@@ -2,6 +2,7 @@
 session_start();
 require_once 'php/connection.php';
 require_once 'php/utils.php';
+require_once 'php/onload.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -142,7 +143,7 @@ require_once 'php/utils.php';
                                         <div class="col me-2">
                                             <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Clients</span></div>
                                             <div class="text-dark fw-bold h5 mb-0">
-                                                <span><?php echo selectData("ClientID", "lient"); ?></span>
+                                                <span id="num-clients"></span>
                                             </div>
                                         </div>
                                         <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
@@ -363,6 +364,15 @@ require_once 'php/utils.php';
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
+    <script>
+        // Retrieve the result from the PHP file
+        var result_json = '<?php echo $result_json; ?>';
+        var result = JSON.parse(result_json);
+
+        // Display the result on the page
+        var num_clients_element = document.getElementById('num-clients');
+        num_clients_element.textContent = result;
+  </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/chart.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
