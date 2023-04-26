@@ -39,7 +39,7 @@ if(isset($_SESSION['reply'])){
                                         <p style="color: red; text-align: center;"><?= $reply; ?></p>
                                     <?php } else {  /*do nothing*/ }?>
                                         <div class="mb-3">
-                                            <input class="form-control form-control-user" type="email" id="Email" aria-describedby="emailHelp" placeholder="Email Address..." name="email">
+                                            <input class="form-control form-control-user" type="text" id="Username" required="" placeholder="Username..." name="username">
                                         </div>
                                         <div class="mb-3">
                                             <input class="form-control form-control-user" type="password" id="Password" required="" placeholder="Password" name="password">
@@ -49,7 +49,6 @@ if(isset($_SESSION['reply'])){
                                                 <!--<label for="Role">Role</label>-->
                                                 <select class="form-control form-control-user" id="Role" name="role">
                                                 <option value="Admin">Admin</option>
-                                                <option value="Client">Client</option>
                                                 <option value="Squad">Squad</option>
                                                 </select>
                                             </div>
