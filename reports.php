@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Table - Brand</title>
+    <title>Reports</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -153,24 +153,24 @@
                                     <thead>
                                         <tr>
                                             <th>ObjectiveID</th>
-                                            <th>UnitID</th>
                                             <th>Report</th>
+                                            <th>Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($rows as $row): ?>
                                             <tr>
                                                 <td><?php echo $row['ObjectiveID']; ?></td>
-                                                <td><?php echo $row['UnitID']; ?></td>
                                                 <td><?php echo $row['Report']; ?></td>
+                                                <td><?php echo $row['Date']; ?></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td><strong>ObjectiveID</strong></td>
-                                            <td><strong>UnitID</strong></td>
                                             <td><strong>Report</strong></td>
+                                            <td><strong>Date</strong></td>
                                         </tr>
                                     </tfoot>
                                 </table>
