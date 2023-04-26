@@ -1,5 +1,5 @@
 <?php
-    require_once 'php/displaysquads.php';
+    require_once 'php/displayreports.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +25,8 @@
                     <li class="nav-item"><a class="nav-link" href="admin.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="clients.php"><i class="fas fa-table"></i><span>Clients</span></a></li>
-                    <li class="nav-item"><a class="nav-link active" href="squads.php"><i class="fas fa-table"></i><span>Squads</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="squads.php"><i class="fas fa-table"></i><span>Squads</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="reports.php"><i class="fas fa-table"></i><span>Reports</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-circle"></i><span>Register</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
@@ -151,25 +152,25 @@
                                 <table class="table my-0" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Description</th>
-                                            <th>ClientID</th>
+                                            <th>ObjectiveID</th>
+                                            <th>UnitID</th>
+                                            <th>Report</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($rows as $row): ?>
                                             <tr>
-                                                <td><?php echo $row['SquadName']; ?></td>
-                                                <td><?php echo $row['Description']; ?></td>
-                                                <td><?php echo $row['ClientID']; ?></td>
+                                                <td><?php echo $row['ObjectiveID']; ?></td>
+                                                <td><?php echo $row['UnitID']; ?></td>
+                                                <td><?php echo $row['Report']; ?></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td><strong>Name</strong></td>
-                                            <td><strong>Description</strong></td>
-                                            <td><strong>ClientID</strong></td>
+                                            <td><strong>ObjectiveID</strong></td>
+                                            <td><strong>UnitID</strong></td>
+                                            <td><strong>Report</strong></td>
                                         </tr>
                                     </tfoot>
                                 </table>

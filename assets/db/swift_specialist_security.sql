@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2023 at 05:34 PM
+-- Generation Time: Apr 26, 2023 at 04:35 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -65,6 +65,19 @@ INSERT INTO `client` (`ClientID`, `Name`, `Contact`, `Description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `media`
+--
+
+CREATE TABLE `media` (
+  `MediaID` int(11) NOT NULL,
+  `path` text NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `ObjectiveID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `objectives`
 --
 
@@ -98,7 +111,6 @@ INSERT INTO `objectives` (`ObjectiveID`, `SquadID`, `Title`, `Activity`, `FromTi
 CREATE TABLE `report` (
   `ReportID` int(11) NOT NULL,
   `ObjectiveID` int(11) DEFAULT NULL,
-  `UnitID` int(11) DEFAULT NULL,
   `Report` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -106,12 +118,12 @@ CREATE TABLE `report` (
 -- Dumping data for table `report`
 --
 
-INSERT INTO `report` (`ReportID`, `ObjectiveID`, `UnitID`, `Report`) VALUES
-(1, 2, 1, 'Unit 1 successfully completed the mission'),
-(2, 3, 2, 'Unit 2 encountered unexpected issues during the mission'),
-(3, 4, 3, 'Unit 3 exceeded mission objectives'),
-(4, 5, 4, 'Unit 4 failed to complete mission due to equipment malfunction'),
-(5, 6, 1, 'Unit 1 encountered enemy fire, mission objectives not achieved');
+INSERT INTO `report` (`ReportID`, `ObjectiveID`, `Report`) VALUES
+(1, 2, 'Unit 1 successfully completed the mission'),
+(2, 3, 'Unit 2 encountered unexpected issues during the mission'),
+(3, 4, 'Unit 3 exceeded mission objectives'),
+(4, 5, 'Unit 4 failed to complete mission due to equipment malfunction'),
+(5, 6, 'Unit 1 encountered enemy fire, mission objectives not achieved');
 
 -- --------------------------------------------------------
 
@@ -168,21 +180,21 @@ INSERT INTO `unit` (`UnitID`, `UnitName`, `Description`, `SquadID`) VALUES
 
 CREATE TABLE `users` (
   `UserID` int(11) NOT NULL,
-  `Email` text DEFAULT NULL,
+  `Username` text DEFAULT NULL,
   `Password` text DEFAULT NULL,
   `LastOnline` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `Status` text DEFAULT NULL
+  `role` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`UserID`, `Email`, `Password`, `LastOnline`, `Status`) VALUES
-(1, 'john@mail.com', 'password123', '2023-04-17 14:51:03', 'Online'),
-(2, 'jane@mail.com', 'password456', '2023-04-17 14:51:03', 'Offline'),
-(3, 'jim@mail.com', 'password789', '2023-04-17 14:51:03', 'Online'),
-(4, 'mary@mail.com', 'password012', '2023-04-17 14:51:03', 'Offline');
+INSERT INTO `users` (`UserID`, `Username`, `Password`, `LastOnline`, `role`) VALUES
+(1, 'john', 'john123', '2023-04-26 09:38:31', 'Admin'),
+(2, 'jane', 'jane123', '2023-04-26 09:38:31', 'Admin'),
+(3, 'alpha', 'alpha123', '2023-04-26 09:38:57', 'Squad'),
+(4, 'beta', 'Beta123', '2023-04-26 09:38:57', 'Squad');
 
 --
 -- Indexes for dumped tables
@@ -202,6 +214,13 @@ ALTER TABLE `client`
   ADD PRIMARY KEY (`ClientID`);
 
 --
+-- Indexes for table `media`
+--
+ALTER TABLE `media`
+  ADD PRIMARY KEY (`MediaID`),
+  ADD KEY `ObjectiveID` (`ObjectiveID`) USING BTREE;
+
+--
 -- Indexes for table `objectives`
 --
 ALTER TABLE `objectives`
@@ -213,8 +232,7 @@ ALTER TABLE `objectives`
 --
 ALTER TABLE `report`
   ADD PRIMARY KEY (`ReportID`),
-  ADD KEY `ObjectiveID` (`ObjectiveID`),
-  ADD KEY `UnitID` (`UnitID`);
+  ADD KEY `ObjectiveID` (`ObjectiveID`);
 
 --
 -- Indexes for table `squad`
@@ -251,6 +269,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `client`
   MODIFY `ClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `media`
+--
+ALTER TABLE `media`
+  MODIFY `MediaID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `objectives`
@@ -302,8 +326,7 @@ ALTER TABLE `objectives`
 -- Constraints for table `report`
 --
 ALTER TABLE `report`
-  ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`ObjectiveID`) REFERENCES `objectives` (`ObjectiveID`),
-  ADD CONSTRAINT `report_ibfk_2` FOREIGN KEY (`UnitID`) REFERENCES `unit` (`UnitID`);
+  ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`ObjectiveID`) REFERENCES `objectives` (`ObjectiveID`);
 
 --
 -- Constraints for table `squad`
