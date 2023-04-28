@@ -1,5 +1,5 @@
 <?php
-$sql = "SELECT * FROM objectives";
+$sql = "SELECT SquadID FROM squad ORDER BY SquadID ASC";
 $result = $connection->query($sql);
 $rows = array();
 

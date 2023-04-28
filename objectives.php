@@ -1,5 +1,7 @@
 <?php
+    require_once 'php/connection.php'; // include database
     require_once 'php/displayobjectives.php';
+    require_once 'php/countsquads.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -226,15 +228,22 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <select class="d-inline-block form-select form-select-sm">
-                                                    <option value="1" selected="">1</option>
-                                                    <option value="2">2</option>
-                                                </select>&nbsp;
+                                            <select class="d-inline-block form-select form-select-sm">
+                                                <?php 
+                                                    require_once 'php/listsquads.php';
+                                                    foreach ($rows as $row): 
+                                                        $squadID = $row['SquadID'];
+                                                ?>
+                                                        <option value="<?php echo $squadID; ?>"><?php echo $squadID; ?></option>
+                                                <?php
+                                                    endforeach; 
+                                                ?>
+                                            </select>&nbsp;
                                             </td>
                                             <td><input class="form-control form-control-sm" type="text" id="title" placeholder="Title" name="title"></td>
                                             <td><input class="form-control form-control-sm" type="text" id="activity" placeholder="Activity" name="activity"></td>
-                                            <td><input class="form-control form-control-sm" type="text" id="fromtime" placeholder="Form Time" name="fromtime"></td>
-                                            <td><input class="form-control form-control-sm" type="text" id="totime" placeholder="To Time" name="totime"></td>
+                                            <td><input class="form-control form-control-sm" type="date" id="fromtime" placeholder="Form Time" name="fromtime"></td>
+                                            <td><input class="form-control form-control-sm" type="date" id="totime" placeholder="To Time" name="totime"></td>
                                             <td><input class="form-control form-control-sm" type="text" id="location" placeholder="Location" name="location"></td>
                                         </tr>
                                     </tbody>
