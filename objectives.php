@@ -225,28 +225,31 @@
                                             <th>Location</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                            <select class="d-inline-block form-select form-select-sm">
-                                                <?php 
-                                                    require_once 'php/listsquads.php';
-                                                    foreach ($rows as $row): 
-                                                        $squadID = $row['SquadID'];
-                                                ?>
-                                                        <option value="<?php echo $squadID; ?>"><?php echo $squadID; ?></option>
-                                                <?php
-                                                    endforeach; 
-                                                ?>
-                                            </select>&nbsp;
-                                            </td>
-                                            <td><input class="form-control form-control-sm" type="text" id="title" placeholder="Title" name="title"></td>
-                                            <td><input class="form-control form-control-sm" type="text" id="activity" placeholder="Activity" name="activity"></td>
-                                            <td><input class="form-control form-control-sm" type="date" id="fromtime" placeholder="Form Time" name="fromtime"></td>
-                                            <td><input class="form-control form-control-sm" type="date" id="totime" placeholder="To Time" name="totime"></td>
-                                            <td><input class="form-control form-control-sm" type="text" id="location" placeholder="Location" name="location"></td>
-                                        </tr>
-                                    </tbody>
+                                    <form method="POST" action="php/addobjective.php">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                <select class="d-inline-block form-select form-select-sm">
+                                                    <?php 
+                                                        require_once 'php/listsquads.php';
+                                                        foreach ($rows as $row): 
+                                                            $squadID = $row['SquadID'];
+                                                    ?>
+                                                            <option value="<?php echo $squadID; ?>"><?php echo $squadID; ?></option>
+                                                    <?php
+                                                        endforeach; 
+                                                    ?>
+                                                </select>&nbsp;
+                                                </td>
+                                                <td><input class="form-control form-control-sm" type="text" id="title" placeholder="Title" name="title"></td>
+                                                <td><input class="form-control form-control-sm" type="text" id="activity" placeholder="Activity" name="activity"></td>
+                                                <td><input class="form-control form-control-sm" type="date" id="fromtime" placeholder="Form Time" name="fromtime"></td>
+                                                <td><input class="form-control form-control-sm" type="date" id="totime" placeholder="To Time" name="totime"></td>
+                                                <td><input class="form-control form-control-sm" type="text" id="location" placeholder="Location" name="location"></td>
+                                                <td><input class="form-control form-control-sm btn btn-primary btn-sm" type="submit" name="submit" value="Set Objective"></td>
+                                            </tr>
+                                        </tbody>
+                                    </form>
                                 </table>
                             </div>
                             <div class="row">
@@ -255,7 +258,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                        <button class="btn btn-primary btn-sm">Set Objective</button>
+                                        
                                     </nav>
                                 </div>
                             </div>
