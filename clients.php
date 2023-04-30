@@ -154,6 +154,8 @@
                                             <th>Name</th>
                                             <th>Contact</th>
                                             <th>Description</th>
+                                            <th>Date Added</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -162,6 +164,12 @@
                                                 <td><?php echo $row['Name']; ?></td>
                                                 <td><?php echo $row['Contact']; ?></td>
                                                 <td><?php echo $row['Description']; ?></td>
+                                                <td><?php echo $row['DateAdded']; ?></td>
+                                                <td>
+                                                    <form method="POST" action="php/deleteclient.php">
+                                                        <button class="btn btn-primary btn-sm" name="ClientID" value="<?php echo $row['ClientID'];?>">Delete</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -170,6 +178,8 @@
                                             <td><strong>Name</strong></td>
                                             <td><strong>Contact</strong></td>
                                             <td><strong>Description</strong></td>
+                                            <td><strong>Date Added</strong></td>
+                                            <td><strong>Action</strong></td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -201,36 +211,19 @@
                                 <table class="table my-0" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>SquadID</th>
-                                            <th>Title</th>
-                                            <th>Activity</th>
-                                            <th>From Time</th>
-                                            <th>To Time</th>
-                                            <th>Location</th>
+                                            <th>Name</th>
+                                            <th>Contact</th>
+                                            <th>Description</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <form method="POST" action="php/addobjective.php">
+                                    <form method="POST" action="php/addclient.php">
                                         <tbody>
                                             <tr>
-                                                <td>
-                                                <select class="d-inline-block form-select form-select-sm" name="SquadID">
-                                                    <?php 
-                                                        require_once 'php/listsquads.php';
-                                                        foreach ($rows as $row): 
-                                                            $squadID = $row['SquadID'];
-                                                    ?>
-                                                            <option value="<?php echo $squadID; ?>"><?php echo $squadID; ?></option>
-                                                    <?php
-                                                        endforeach; 
-                                                    ?>
-                                                </select>&nbsp;
-                                                </td>
-                                                <td><input class="form-control form-control-sm" type="text" id="title" placeholder="Title" name="title"></td>
-                                                <td><input class="form-control form-control-sm" type="text" id="activity" placeholder="Activity" name="activity"></td>
-                                                <td><input class="form-control form-control-sm" type="date" id="fromtime" placeholder="Form Time" name="fromtime"></td>
-                                                <td><input class="form-control form-control-sm" type="date" id="totime" placeholder="To Time" name="totime"></td>
-                                                <td><input class="form-control form-control-sm" type="text" id="location" placeholder="Location" name="location"></td>
-                                                <td><input class="form-control form-control-sm btn btn-primary btn-sm" type="submit" name="submit" value="Set Objective"></td>
+                                                <td><input class="form-control form-control-sm" type="text" id="Name" placeholder="Name" name="name"></td>
+                                                <td><input class="form-control form-control-sm" type="text" id="Contact" placeholder="Contact" name="contact"></td>
+                                                <td><input class="form-control form-control-sm" type="text" id="Description" placeholder="Description" name="description"></td>
+                                                <td><input type="submit" class="btn btn-primary btn-sm" name="submit" value="Add Client"></td>
                                             </tr>
                                         </tbody>
                                     </form>
@@ -241,9 +234,7 @@
                                     <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Fill in all fields to set an objective</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                        
-                                    </nav>
+                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers"></nav>
                                 </div>
                             </div>
                         </div>
