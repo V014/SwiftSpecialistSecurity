@@ -129,10 +129,10 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Clients</h3>
+                    <h3 class="text-dark mb-4">Reports</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Client Information</p>
+                            <p class="text-primary m-0 fw-bold">Report Information</p>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -155,6 +155,7 @@
                                             <th>ObjectiveID</th>
                                             <th>Report</th>
                                             <th>Date</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -163,6 +164,11 @@
                                                 <td><?php echo $row['ObjectiveID']; ?></td>
                                                 <td><?php echo $row['Report']; ?></td>
                                                 <td><?php echo $row['Date']; ?></td>
+                                                <td>
+                                                    <form method="POST" action="php/deletereport.php">
+                                                        <button class="btn btn-primary btn-sm" name="ReportID" value="<?php echo $row['ReportID'];?>">Delete</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -171,6 +177,7 @@
                                             <td><strong>ObjectiveID</strong></td>
                                             <td><strong>Report</strong></td>
                                             <td><strong>Date</strong></td>
+                                            <td><strong>Action</strong></td>
                                         </tr>
                                     </tfoot>
                                 </table>

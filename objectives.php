@@ -158,6 +158,7 @@
                                 <table class="table my-0" id="dataTable">
                                     <thead>
                                         <tr>
+                                            <th>ObjectiveID</th>
                                             <th>SquadID</th>
                                             <th>Title</th>
                                             <th>Activity</th>
@@ -171,6 +172,7 @@
                                     <tbody>
                                         <?php foreach ($rows as $row): ?>
                                             <tr>
+                                                <td><?php echo $row['ObjectiveID']; ?></td>
                                                 <td><?php echo $row['SquadID']; ?></td>
                                                 <td><?php echo $row['Title']; ?></td>
                                                 <td><?php echo $row['Activity']; ?></td>
@@ -188,6 +190,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
+                                            <td><strong>ObjectiveID</strong></td>
                                             <td><strong>SquadID</strong></td>
                                             <td><strong>Title</strong></td>
                                             <td><strong>Activity</strong></td>
