@@ -129,7 +129,7 @@
                 </nav>
                 <div class="container-fluid">
                     <h3 class="text-dark mb-4">Clients</h3>
-                    <div class="card shadow">
+                    <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <p class="text-primary m-0 fw-bold">Client Information</p>
                         </div>
@@ -187,6 +187,62 @@
                                             <li class="page-item"><a class="page-link" href="#">3</a></li>
                                             <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
                                         </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Add Client</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                <table class="table my-0" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>SquadID</th>
+                                            <th>Title</th>
+                                            <th>Activity</th>
+                                            <th>From Time</th>
+                                            <th>To Time</th>
+                                            <th>Location</th>
+                                        </tr>
+                                    </thead>
+                                    <form method="POST" action="php/addobjective.php">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                <select class="d-inline-block form-select form-select-sm" name="SquadID">
+                                                    <?php 
+                                                        require_once 'php/listsquads.php';
+                                                        foreach ($rows as $row): 
+                                                            $squadID = $row['SquadID'];
+                                                    ?>
+                                                            <option value="<?php echo $squadID; ?>"><?php echo $squadID; ?></option>
+                                                    <?php
+                                                        endforeach; 
+                                                    ?>
+                                                </select>&nbsp;
+                                                </td>
+                                                <td><input class="form-control form-control-sm" type="text" id="title" placeholder="Title" name="title"></td>
+                                                <td><input class="form-control form-control-sm" type="text" id="activity" placeholder="Activity" name="activity"></td>
+                                                <td><input class="form-control form-control-sm" type="date" id="fromtime" placeholder="Form Time" name="fromtime"></td>
+                                                <td><input class="form-control form-control-sm" type="date" id="totime" placeholder="To Time" name="totime"></td>
+                                                <td><input class="form-control form-control-sm" type="text" id="location" placeholder="Location" name="location"></td>
+                                                <td><input class="form-control form-control-sm btn btn-primary btn-sm" type="submit" name="submit" value="Set Objective"></td>
+                                            </tr>
+                                        </tbody>
+                                    </form>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 align-self-center">
+                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Fill in all fields to set an objective</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                        
                                     </nav>
                                 </div>
                             </div>
