@@ -164,6 +164,8 @@
                                             <th>From Time</th>
                                             <th>To Time</th>
                                             <th>Location</th>
+                                            <th>Date</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -175,6 +177,12 @@
                                                 <td><?php echo $row['FromTime']; ?></td>
                                                 <td><?php echo $row['ToTime']; ?></td>
                                                 <td><?php echo $row['Location']; ?></td>
+                                                <td><?php echo $row['DateSet']; ?></td>
+                                                <td>
+                                                    <form method="POST" action="php/deleteobjective.php">
+                                                        <button class="btn btn-primary btn-sm" name="ObjectiveID" value="<?php echo $row['ObjectiveID'];?>">Delete</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -186,6 +194,8 @@
                                             <td><strong>From Time</strong></td>
                                             <td><strong>To Time</strong></td>
                                             <td><strong>Location</strong></td>
+                                            <td><strong>Date</strong></td>
+                                            <td><strong>Action</strong></td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -229,7 +239,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                <select class="d-inline-block form-select form-select-sm">
+                                                <select class="d-inline-block form-select form-select-sm" name="SquadID">
                                                     <?php 
                                                         require_once 'php/listsquads.php';
                                                         foreach ($rows as $row): 
