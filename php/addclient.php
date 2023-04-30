@@ -12,11 +12,11 @@ $query = "INSERT INTO client (`Name`, `contact`, `description`) VALUES('$name', 
 $result = mysqli_query($connection, $query);
 
 if($result != ""){
-    header("location: ../clients.php");
     echo "<script>alert('Client added')</script>";
+    header("location: ../clients.php");
 
 } else {
-    header("location: ../clients.php");
     echo "<script>alert('Operation failed')</script>";
+    header("location: ../clients.php");
 }
 ?>
