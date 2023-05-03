@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2023 at 04:35 PM
+-- Generation Time: May 04, 2023 at 12:45 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -51,16 +51,18 @@ CREATE TABLE `client` (
   `ClientID` int(11) NOT NULL,
   `Name` varchar(50) DEFAULT NULL,
   `Contact` varchar(255) DEFAULT NULL,
-  `Description` text DEFAULT NULL
+  `Description` text DEFAULT NULL,
+  `DateAdded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `client`
 --
 
-INSERT INTO `client` (`ClientID`, `Name`, `Contact`, `Description`) VALUES
-(1, 'ABC Corp', '+1 (123) 456-7890', 'ABC Street, New York, A technology company focused on software development.'),
-(2, 'XYZ Corp', '+1 (987) 654-3210', 'XYZ Road, San Francisco, A technology company focused on hardware manufacturing.');
+INSERT INTO `client` (`ClientID`, `Name`, `Contact`, `Description`, `DateAdded`) VALUES
+(1, 'ABC Corp', '+1 (123) 456-7890', 'ABC Street, New York, A technology company focused on software development.', '2023-04-30 13:16:29'),
+(2, 'XYZ Corp', '+1 (987) 654-3210', 'XYZ Road, San Francisco, A technology company focused on hardware manufacturing.', '2023-04-30 13:16:29'),
+(4, 'LOOP', '+1 (123) 443-4495', 'LOOP Street, Florida, A technology company focused on Artificial Intelligence.', '2023-04-30 13:39:28');
 
 -- --------------------------------------------------------
 
@@ -88,19 +90,22 @@ CREATE TABLE `objectives` (
   `Activity` varchar(255) DEFAULT NULL,
   `FromTime` datetime DEFAULT NULL,
   `ToTime` datetime DEFAULT NULL,
-  `Location` varchar(255) DEFAULT NULL
+  `Location` varchar(255) DEFAULT NULL,
+  `DateSet` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `objectives`
 --
 
-INSERT INTO `objectives` (`ObjectiveID`, `SquadID`, `Title`, `Activity`, `FromTime`, `ToTime`, `Location`) VALUES
-(2, 1, 'Improve Customer Service', 'Training', '2023-04-15 08:00:00', '2023-04-15 16:00:00', 'Head Office'),
-(3, 2, 'Increase Sales', 'Marketing Campaign', '2023-04-16 10:00:00', '2023-04-16 16:00:00', 'Outlet 1'),
-(4, 1, 'Reduce Expenses', 'Process Improvement', '2023-04-17 09:00:00', '2023-04-17 17:00:00', 'Warehouse'),
-(5, 2, 'Improve Quality', 'Quality Control', '2023-04-18 08:00:00', '2023-04-18 16:00:00', 'Factory'),
-(6, 1, 'Develop New Product', 'Research and Development', '2023-04-19 10:00:00', '2023-04-19 18:00:00', 'Research Center');
+INSERT INTO `objectives` (`ObjectiveID`, `SquadID`, `Title`, `Activity`, `FromTime`, `ToTime`, `Location`, `DateSet`) VALUES
+(2, 1, 'Improve Customer Service', 'Training', '2023-04-15 08:00:00', '2023-04-15 16:00:00', 'Head Office', '2023-04-27 18:59:12'),
+(3, 2, 'Increase Sales', 'Marketing Campaign', '2023-04-16 10:00:00', '2023-04-16 16:00:00', 'Outlet 1', '2023-04-27 18:59:12'),
+(4, 1, 'Reduce Expenses', 'Process Improvement', '2023-04-17 09:00:00', '2023-04-17 17:00:00', 'Warehouse', '2023-04-27 18:59:12'),
+(5, 2, 'Improve Quality', 'Quality Control', '2023-04-18 08:00:00', '2023-04-18 16:00:00', 'Factory', '2023-04-27 18:59:12'),
+(6, 1, 'Develop New Product', 'Research and Development', '2023-04-19 10:00:00', '2023-04-19 18:00:00', 'Research Center', '2023-04-27 18:59:12'),
+(7, 1, 'Inspection', 'Look around the perimeter for suspecious activity', '2023-05-01 00:00:00', '2023-05-02 00:00:00', 'Client residence', '2023-04-30 07:26:03'),
+(9, 3, 'Inspection', 'Look around the perimeter for suspecious activity', '2023-05-01 00:00:00', '2023-05-02 00:00:00', 'Client residence', '2023-04-30 08:56:39');
 
 -- --------------------------------------------------------
 
@@ -111,19 +116,20 @@ INSERT INTO `objectives` (`ObjectiveID`, `SquadID`, `Title`, `Activity`, `FromTi
 CREATE TABLE `report` (
   `ReportID` int(11) NOT NULL,
   `ObjectiveID` int(11) DEFAULT NULL,
-  `Report` text DEFAULT NULL
+  `Report` text DEFAULT NULL,
+  `Date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `report`
 --
 
-INSERT INTO `report` (`ReportID`, `ObjectiveID`, `Report`) VALUES
-(1, 2, 'Unit 1 successfully completed the mission'),
-(2, 3, 'Unit 2 encountered unexpected issues during the mission'),
-(3, 4, 'Unit 3 exceeded mission objectives'),
-(4, 5, 'Unit 4 failed to complete mission due to equipment malfunction'),
-(5, 6, 'Unit 1 encountered enemy fire, mission objectives not achieved');
+INSERT INTO `report` (`ReportID`, `ObjectiveID`, `Report`, `Date`) VALUES
+(1, 2, 'Unit 1 successfully completed the mission', '2023-04-26 14:56:31'),
+(2, 3, 'Unit 2 encountered unexpected issues during the mission', '2023-04-26 14:56:31'),
+(3, 4, 'Unit 3 exceeded mission objectives', '2023-04-26 14:56:31'),
+(4, 5, 'Unit 4 failed to complete mission due to equipment malfunction', '2023-04-26 14:56:31'),
+(5, 6, 'Unit 1 encountered enemy fire, mission objectives not achieved', '2023-04-26 14:56:31');
 
 -- --------------------------------------------------------
 
@@ -135,19 +141,20 @@ CREATE TABLE `squad` (
   `SquadID` int(11) NOT NULL,
   `SquadName` varchar(50) DEFAULT NULL,
   `Description` varchar(255) DEFAULT NULL,
-  `ClientID` int(11) DEFAULT NULL
+  `ClientID` int(11) DEFAULT NULL,
+  `DateAdded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `squad`
 --
 
-INSERT INTO `squad` (`SquadID`, `SquadName`, `Description`, `ClientID`) VALUES
-(1, 'Team Alpha', 'Elite team of operatives', 1),
-(2, 'Team Bravo', 'Special forces unit', 2),
-(3, 'Team Charlie', 'Counter-terrorism unit', 1),
-(4, 'Team Delta', 'Intelligence gathering unit', 2),
-(5, 'Team Echo', 'Underwater operations team', 1);
+INSERT INTO `squad` (`SquadID`, `SquadName`, `Description`, `ClientID`, `DateAdded`) VALUES
+(1, 'Team Alpha', 'Elite team of operatives', 1, '2023-04-30 15:10:42'),
+(2, 'Team Bravo', 'Special forces unit', 2, '2023-04-30 15:10:42'),
+(3, 'Team Charlie', 'Counter-terrorism unit', 1, '2023-04-30 15:10:42'),
+(4, 'Team Delta', 'Intelligence gathering unit', 2, '2023-04-30 15:10:42'),
+(5, 'Team Echo', 'Underwater operations team', 1, '2023-04-30 15:10:42');
 
 -- --------------------------------------------------------
 
@@ -268,7 +275,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `ClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `media`
@@ -280,7 +287,7 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT for table `objectives`
 --
 ALTER TABLE `objectives`
-  MODIFY `ObjectiveID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ObjectiveID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `report`
@@ -292,7 +299,7 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT for table `squad`
 --
 ALTER TABLE `squad`
-  MODIFY `SquadID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `SquadID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `unit`
@@ -326,7 +333,8 @@ ALTER TABLE `objectives`
 -- Constraints for table `report`
 --
 ALTER TABLE `report`
-  ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`ObjectiveID`) REFERENCES `objectives` (`ObjectiveID`);
+  ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`ObjectiveID`) REFERENCES `objectives` (`ObjectiveID`),
+  ADD CONSTRAINT `report_ibfk_2` FOREIGN KEY (`UnitID`) REFERENCES `unit` (`UnitID`);
 
 --
 -- Constraints for table `squad`
