@@ -1,11 +1,5 @@
 <?php
-session_start();
-require_once 'php/connection.php';
-require_once 'php/utils.php';
-require_once 'php/countclients.php';
-require_once 'php/countobjectives.php';
-require_once 'php/countreports.php';
-require_once 'php/countsquads.php';
+    require_once 'php/displaysquads.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +7,7 @@ require_once 'php/countsquads.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Admin</title>
+    <title>Table - Brand</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -24,12 +18,15 @@ require_once 'php/countsquads.php';
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
             <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                     <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-laugh-wink"></i></div>
-                    <div class="sidebar-brand-text mx-3"><span style="font-size: 12px;">SwiftSpec</span></div>
+                    <div class="sidebar-brand-text mx-3"><span>SwiftSpec</span></div>
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link active" href="admin.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="clients.php"><i class="fas fa-table"></i><span>Clients</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="squadhome.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="squadObjectives.php"><i class="fas fa-list"></i><span>Objectives</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="squadclients.php"><i class="fas fa-table"></i><span>Clients</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="squadlist.php"><i class="fas fa-table"></i><span>Squads</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="squadreports.php"><i class="fas fa-table"></i><span>Reports</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="php/logout.php"><i class="fas fa-door-open"></i><span>Logout</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
@@ -132,119 +129,83 @@ require_once 'php/countsquads.php';
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                        <h3 class="text-dark mb-0">Dashboard</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a>
+                    <h3 class="text-dark mb-4">Squads</h3>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Squad Information</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 text-nowrap">
+                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
+                                                <option value="10" selected="">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                            </select>&nbsp;</label></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                                </div>
+                            </div>
+                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                <table class="table my-0" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>ClientID</th>
+                                            <th>Date Added</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($rows as $row): ?>
+                                            <tr>
+                                                <td><?php echo $row['SquadName']; ?></td>
+                                                <td><?php echo $row['Description']; ?></td>
+                                                <td><?php echo $row['ClientID']; ?></td>
+                                                <td><?php echo $row['DateAdded']; ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td><strong>Name</strong></td>
+                                            <td><strong>Description</strong></td>
+                                            <td><strong>ClientID</strong></td>
+                                            <td><strong>Date Added</strong></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 align-self-center">
+                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                        <ul class="pagination">
+                                            <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 col-xl-3 mb-4">
-                            <div class="card shadow border-start-primary py-2">
-                                <div class="card-body">
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Clients</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0">
-                                                <span id="num-clients"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto"><i class="fas fa-users fa-2x text-gray-300"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
-                            <div class="card shadow border-start-success py-2">
-                                <div class="card-body">
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Objectives</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0">
-                                                <span id="num-objectives"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto"><i class="fas fa-tasks fa-2x text-gray-300"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
-                            <div class="card shadow border-start-info py-2">
-                                <div class="card-body">
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-info fw-bold text-xs mb-1"><span>Patrol Squads</span></div>
-                                            <div class="row g-0 align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="text-dark fw-bold h5 mb-0 me-3">
-                                                        <span id="num-squad"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto"><i class="fas fa-user-shield fa-2x text-gray-300"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
-                            <div class="card shadow border-start-warning py-2">
-                                <div class="card-body">
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>Reports</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0">
-                                                <span id="num-report"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>        
                 </div>
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Swift Specialist Security 2023</span></div>
+                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2023</span></div>
                 </div>
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
-    <script>
-        // Retrieve the client count from the PHP file
-        var result_json = '<?php echo $result_json; ?>';
-        var result = JSON.parse(result_json);
-
-        // Display the result on the page
-        var num_clients_element = document.getElementById('num-clients');
-        num_clients_element.textContent = result;
-
-        // Retrieve the objectives count from the PHP file
-        var objectives_json = '<?php echo $objectives_json; ?>';
-        var objectives = JSON.parse(objectives_json);
-
-        // Display the result on the page
-        var num_objectives = document.getElementById('num-objectives');
-        num_objectives.textContent = objectives;
-
-        // Retrieve the objectives count from the PHP file
-        var report_json = '<?php echo $report_json; ?>';
-        var report = JSON.parse(report_json);
-
-        // Display the result on the page
-        var num_report = document.getElementById('num-report');
-        num_report.textContent = report;
-
-        // Retrieve the squad count from the PHP file
-        var squad_json = '<?php echo $squad_json; ?>';
-        var squad = JSON.parse(squad_json);
-
-        // Display the result on the page
-        var num_squad = document.getElementById('num-squad');
-        num_squad.textContent = squad;
-    </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/chart.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/theme.js"></script>
 </body>
