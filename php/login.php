@@ -25,12 +25,8 @@
                     header("location: ../admin.php");
                     break;
 
-                case 'Client':
-                    header("location: ../client.php");
-                    break;
-
                 case 'Squad':
-                    header("location: ../squad.php");
+                    header("location: ../squadhome.php");
                     break;
                 }
         } else { // user credentials are incorrect

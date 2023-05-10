@@ -19,9 +19,9 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link active" href="index.php"><i class="fas fa-tachometer-alt"></i><span>Home</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php"><i class="fas fa-tachometer-alt"></i><span>Home</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="login.php"><i class="far fa-user-circle"></i><span>Login</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="aboutus.php"><i class="fas fa-question"></i><span>About us</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="aboutus.php"><i class="fas fa-question"></i><span>About us</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
@@ -80,10 +80,14 @@
                             <div class="row h-100">
                                 <div class="col-md-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
                                     <div>
-                                        <h2 class="text-uppercase fw-bold mb-3">WELCOME BACK</h2>
-                                        <p class="mb-4">For our clients, they will be able to send alerts without login in. For users who aren't our clients, we will send you a bill and registration form. If you would like to be aware of security events, subscribe to our newsletter.</p>
-                                        <button class="btn btn-primary fs-5 me-2 py-2 px-4" type="button">Sound Alarm</button>
-                                        <button class="btn btn-outline-primary fs-5 py-2 px-4" type="button">Subscribe</button>
+                                        <h2 class="text-uppercase fw-bold mb-3">About us</h2>
+                                        <p class="mb-4">Swap Specialist Security (SSS) was established in 2020 with a mission to protect assets for people with high security expectations and professionalism. 
+                                            SSS is located in Africa, Malawi and it believes in expanding their reach and services. To start small, a new system was required to start the mission of globalizations of the company. 
+                                            This meant having a secure presence on the internet while providing their services for their clients. The proposed system will have to provide a basic reporting system from the patrol unit 
+                                            captain to the headquarters via the internet. This means they can communicate directly over the internet without leaving their system to maintain a high level of security. This will also allow 
+                                            the client to check on the security details with whatever device they are able to use. Security management is an important job towards clients to not only protect their assets or create a save 
+                                            business environment, but themselves and maintain order in an event or area. It also reduces stress levels and increases confidence in the clients.
+                                        </p>
                                     </div>
                                 </div>
                             </div>

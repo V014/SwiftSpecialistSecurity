@@ -158,12 +158,12 @@
                                 <table class="table my-0" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>ObjectiveID</th>
-                                            <th>SquadID</th>
+                                            <th>Objective</th>
+                                            <th>Squad</th>
                                             <th>Title</th>
                                             <th>Activity</th>
-                                            <th>From Time</th>
-                                            <th>To Time</th>
+                                            <th>From</th>
+                                            <th>To</th>
                                             <th>Location</th>
                                             <th>Date</th>
                                             <th>Action</th>

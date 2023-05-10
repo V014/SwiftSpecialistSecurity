@@ -2,7 +2,6 @@
 session_start();
 if(isset($_SESSION['reply'])){
     if($_SESSION['reply'] === "invalid"){
-        $_SESSION['attempts'] += 1;
         $reply = "Invalid credentials!";
     }
 }

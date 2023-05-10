@@ -203,10 +203,11 @@
                                         <tr>
                                             <th>ObjectiveID</th>
                                             <th>Report</th>
+                                            <th>Media</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <form method="POST" action="php/addreport.php">
+                                    <form method="POST" action="php/addreport.php" enctype="multipart/form-data">
                                         <tbody>
                                             <tr>
                                                 <td>
@@ -222,7 +223,8 @@
                                                     ?>
                                                 </select>&nbsp;
                                                 </td>
-                                                <td><input class="form-control form-control-sm" type="text" id="report" placeholder="Report" name="report"></td>
+                                                <td><textarea class="form-control form-control-sm" id="report" placeholder="Report" rows="4" name="report"></textarea></td>
+                                                <td><input class="form-control form-control-sm" type="file" name="filesToUpload" value="Upload"></td>
                                                 <td><input class="form-control form-control-sm btn btn-primary btn-sm" type="submit" name="submit" value="Write Report"></td>
                                             </tr>
                                         </tbody>
