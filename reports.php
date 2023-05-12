@@ -152,8 +152,8 @@
                                 <table class="table my-0" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>ObjectiveID</th>
                                             <th>Report</th>
+                                            <th>ObjectiveID</th>
                                             <th>Date</th>
                                             <th>Action</th>
                                         </tr>
@@ -161,8 +161,8 @@
                                     <tbody>
                                         <?php foreach ($rows as $row): ?>
                                             <tr>
-                                                <td><?php echo $row['ObjectiveID']; ?></td>
                                                 <td><?php echo $row['Report']; ?></td>
+                                                <td><?php echo $row['ObjectiveID']; ?></td>
                                                 <td><?php echo $row['Date']; ?></td>
                                                 <td>
                                                     <form method="POST" action="php/deletereport.php">
@@ -174,8 +174,8 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td><strong>ObjectiveID</strong></td>
                                             <td><strong>Report</strong></td>
+                                            <td><strong>ObjectiveID</strong></td>
                                             <td><strong>Date</strong></td>
                                             <td><strong>Action</strong></td>
                                         </tr>
