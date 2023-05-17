@@ -13,6 +13,7 @@ if(isset($_SESSION['reply'])){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Login</title>
+    <meta name="description" content="This is a company that delivers security services both physically and virtually to it's clients and enables proper and coordinated security services. If you have an emergency, you can still hit the alert button and we will contact and reach you. On reach, we will request for more details if you wish to be our client.">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
 </head>
