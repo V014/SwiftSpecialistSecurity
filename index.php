@@ -83,8 +83,10 @@
                                     <div>
                                         <h2 class="text-uppercase fw-bold mb-3">WELCOME BACK</h2>
                                         <p class="mb-4">For our clients, they will be able to send alerts without login in. For users who aren't our clients, we will send you a bill and registration form. If you would like to be aware of security events, subscribe to our newsletter.</p>
-                                        <button class="btn btn-primary fs-5 me-2 py-2 px-4" type="button">Sound Alarm</button>
-                                        <button class="btn btn-outline-primary fs-5 py-2 px-4" type="button">Subscribe</button>
+                                        <form action="POST" action="assets/php/soundalarm.php">
+                                            <button class="btn btn-primary fs-5 me-2 py-2 px-4" type="submit" name="alarm">Sound Alarm</button>
+                                            <button class="btn btn-outline-primary fs-5 py-2 px-4" type="submit" name="subscribe">Subscribe</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -99,6 +101,16 @@
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
+    <script>
+        const successCallback = (position) => {
+            console.error(error);
+        };
+
+        const errorCallback = (error) => {
+            console.log(position);
+        };
+        navigator. getlocation.watchPosition(successCallback, errorCallback);
+    </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/theme.js"></script>
