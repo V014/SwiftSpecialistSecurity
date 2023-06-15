@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2023 at 12:45 AM
+-- Generation Time: Jun 10, 2023 at 11:49 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -30,16 +30,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `AdminID` int(11) NOT NULL,
   `UserID` int(11) DEFAULT NULL,
-  `Name` varchar(50) DEFAULT NULL
+  `Name` varchar(50) DEFAULT NULL,
+  `DateAdded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`AdminID`, `UserID`, `Name`) VALUES
-(1, 1, 'John'),
-(2, 2, 'Jane');
+INSERT INTO `admin` (`AdminID`, `UserID`, `Name`, `DateAdded`) VALUES
+(1, 1, 'John', '2023-06-06 07:31:22'),
+(2, 2, 'Jane', '2023-06-06 07:31:22');
 
 -- --------------------------------------------------------
 
@@ -63,6 +64,19 @@ INSERT INTO `client` (`ClientID`, `Name`, `Contact`, `Description`, `DateAdded`)
 (1, 'ABC Corp', '+1 (123) 456-7890', 'ABC Street, New York, A technology company focused on software development.', '2023-04-30 13:16:29'),
 (2, 'XYZ Corp', '+1 (987) 654-3210', 'XYZ Road, San Francisco, A technology company focused on hardware manufacturing.', '2023-04-30 13:16:29'),
 (4, 'LOOP', '+1 (123) 443-4495', 'LOOP Street, Florida, A technology company focused on Artificial Intelligence.', '2023-04-30 13:39:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `k9`
+--
+
+CREATE TABLE `k9` (
+  `k9ID` int(11) NOT NULL,
+  `Breed` text NOT NULL,
+  `SquadID` int(11) NOT NULL,
+  `DateAdded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -104,8 +118,21 @@ INSERT INTO `objectives` (`ObjectiveID`, `SquadID`, `Title`, `Activity`, `FromTi
 (4, 1, 'Reduce Expenses', 'Process Improvement', '2023-04-17 09:00:00', '2023-04-17 17:00:00', 'Warehouse', '2023-04-27 18:59:12'),
 (5, 2, 'Improve Quality', 'Quality Control', '2023-04-18 08:00:00', '2023-04-18 16:00:00', 'Factory', '2023-04-27 18:59:12'),
 (6, 1, 'Develop New Product', 'Research and Development', '2023-04-19 10:00:00', '2023-04-19 18:00:00', 'Research Center', '2023-04-27 18:59:12'),
-(7, 1, 'Inspection', 'Look around the perimeter for suspecious activity', '2023-05-01 00:00:00', '2023-05-02 00:00:00', 'Client residence', '2023-04-30 07:26:03'),
-(9, 3, 'Inspection', 'Look around the perimeter for suspecious activity', '2023-05-01 00:00:00', '2023-05-02 00:00:00', 'Client residence', '2023-04-30 08:56:39');
+(7, 1, 'Inspection', 'Look around the perimeter for suspecious activity', '2023-05-01 00:00:00', '2023-05-02 00:00:00', 'Client residence', '2023-04-30 07:26:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `PaymentID` int(11) NOT NULL,
+  `UnitID` int(11) NOT NULL,
+  `Role` text NOT NULL,
+  `Amount` int(11) NOT NULL,
+  `Date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -166,18 +193,19 @@ CREATE TABLE `unit` (
   `UnitID` int(11) NOT NULL,
   `UnitName` varchar(50) DEFAULT NULL,
   `Description` varchar(255) DEFAULT NULL,
-  `SquadID` int(11) DEFAULT NULL
+  `SquadID` int(11) DEFAULT NULL,
+  `DateAdded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `unit`
 --
 
-INSERT INTO `unit` (`UnitID`, `UnitName`, `Description`, `SquadID`) VALUES
-(1, 'Alice Brown', 'Expert in communication', 1),
-(2, 'Bob Smith', 'Expert in logistics', 1),
-(3, 'Charlie Davis', 'Expert in technology', 2),
-(4, 'David Johnson', 'Expert in security', 2);
+INSERT INTO `unit` (`UnitID`, `UnitName`, `Description`, `SquadID`, `DateAdded`) VALUES
+(1, 'Alice Brown', 'Expert in communication', 1, '2023-06-06 07:31:53'),
+(2, 'Bob Smith', 'Expert in logistics', 1, '2023-06-06 07:31:53'),
+(3, 'Charlie Davis', 'Expert in technology', 2, '2023-06-06 07:31:53'),
+(4, 'David Johnson', 'Expert in security', 2, '2023-06-06 07:31:53');
 
 -- --------------------------------------------------------
 
@@ -203,6 +231,19 @@ INSERT INTO `users` (`UserID`, `Username`, `Password`, `LastOnline`, `role`) VAL
 (3, 'alpha', 'alpha123', '2023-04-26 09:38:57', 'Squad'),
 (4, 'beta', 'Beta123', '2023-04-26 09:38:57', 'Squad');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle`
+--
+
+CREATE TABLE `vehicle` (
+  `VehicleID` int(11) NOT NULL,
+  `RegistrationNumber` int(11) DEFAULT NULL,
+  `SquadID` int(11) DEFAULT NULL,
+  `DateAdded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -221,6 +262,12 @@ ALTER TABLE `client`
   ADD PRIMARY KEY (`ClientID`);
 
 --
+-- Indexes for table `k9`
+--
+ALTER TABLE `k9`
+  ADD PRIMARY KEY (`k9ID`);
+
+--
 -- Indexes for table `media`
 --
 ALTER TABLE `media`
@@ -235,11 +282,17 @@ ALTER TABLE `objectives`
   ADD KEY `SquadID` (`SquadID`);
 
 --
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`PaymentID`);
+
+--
 -- Indexes for table `report`
 --
 ALTER TABLE `report`
   ADD PRIMARY KEY (`ReportID`),
-  ADD KEY `ObjectiveID` (`ObjectiveID`);
+  ADD KEY `ObjectiveID` (`ObjectiveID`) USING BTREE;
 
 --
 -- Indexes for table `squad`
@@ -262,6 +315,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`UserID`);
 
 --
+-- Indexes for table `vehicle`
+--
+ALTER TABLE `vehicle`
+  ADD PRIMARY KEY (`VehicleID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -278,6 +337,12 @@ ALTER TABLE `client`
   MODIFY `ClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `k9`
+--
+ALTER TABLE `k9`
+  MODIFY `k9ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
@@ -287,7 +352,13 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT for table `objectives`
 --
 ALTER TABLE `objectives`
-  MODIFY `ObjectiveID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ObjectiveID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `PaymentID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `report`
@@ -312,6 +383,12 @@ ALTER TABLE `unit`
 --
 ALTER TABLE `users`
   MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `vehicle`
+--
+ALTER TABLE `vehicle`
+  MODIFY `VehicleID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
