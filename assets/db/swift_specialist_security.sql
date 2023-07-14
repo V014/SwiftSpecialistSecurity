@@ -55,7 +55,6 @@ CREATE TABLE `client` (
   `Description` text DEFAULT NULL,
   `DateAdded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Location` POINT,
-  `SquadID` int(11)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
