@@ -1,5 +1,30 @@
 <?php
-require_once 'php/displaysquads.php';
+require_once 'php/displayfeed.php';
+
+$selectedSquad = 1;
+$selectedObjective = null;
+$media = null;
+
+if (isset($_GET['id']) && $_GET['id'] !== '') {
+    $selectedSquad = $_GET['id'];
+}
+
+if (isset($_GET['objective_id']) && $_GET['objective_id'] !== '') {
+    foreach ($objectives as $objective) {
+        if ($objective["ObjectiveID"] == $_GET["objective_id"]) {
+            $selectedClient = $client;
+            foreach ($mediaFeeds as $mediaFeed) {
+                if ($mediaFeed["ObjectiveID"] == $_GET['objective_id']) {
+                    $media = $mediaFeed;
+                    break;
+                }
+            }
+
+            break;
+        }
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +32,7 @@ require_once 'php/displaysquads.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Squads</title>
+    <title>Feed</title>
     <meta name="description" content="This is a company that delivers security services both physically and virtually to it's clients and enables proper and coordinated security services. If you have an emergency, you can still hit the alert button and we will contact and reach you. On reach, we will request for more details if you wish to be our client.">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
@@ -23,11 +48,11 @@ require_once 'php/displaysquads.php';
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="admin.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="Objectives.php"><i class="fas fa-list"></i><span>Objectives</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="clients.php"><i class="fas fa-table"></i><span>Clients</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="squads.php"><i class="fas fa-table"></i><span>Squads</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="reports.php"><i class="fas fa-table"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="squadhome.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="squadObjectives.php"><i class="fas fa-list"></i><span>Objectives</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="squadclients.php"><i class="fas fa-table"></i><span>Clients</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="squadlist.php"><i class="fas fa-table"></i><span>Squads</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="squadreports.php"><i class="fas fa-table"></i><span>Reports</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="feed.php"><i class="fas fa-table"></i><span>Feed</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="terrain.php"><i class="fas fa-table"></i><span>Terrain</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="php/logout.php"><i class="fas fa-door-open"></i><span>Logout</span></a></li>
@@ -132,123 +157,76 @@ require_once 'php/displaysquads.php';
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Squads</h3>
-                    <div class="card shadow">
-                        <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Squad Information</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>&nbsp;</label></div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
-                                </div>
-                            </div>
-                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                                <table class="table my-0" id="dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Description</th>
-                                            <th>ClientID</th>
-                                            <th>Date Added</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($rows as $row) : ?>
-                                            <tr>
-                                                <td><?php echo $row['SquadName']; ?></td>
-                                                <td><?php echo $row['Description']; ?></td>
-                                                <td><?php echo $row['ClientID']; ?></td>
-                                                <td><?php echo $row['DateAdded']; ?></td>
-                                                <td>
-                                                    <form method="POST" action="php/deletesquad.php">
-                                                        <button class="btn btn-primary btn-sm" name="SquadID" value="<?php echo $row['SquadID']; ?>">Delete</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td><strong>Name</strong></td>
-                                            <td><strong>Description</strong></td>
-                                            <td><strong>ClientID</strong></td>
-                                            <td><strong>Date Added</strong></td>
-                                            <td><strong>Action</strong></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 align-self-center">
-                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                        <ul class="pagination">
-                                            <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="row">
+                        <?php if (!is_null($media)) : ?>
+                            <video controls>
+                                <source src="<?php echo $media["path"]; ?>" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        <?php endif ?>
                     </div>
-                    <div class="card shadow">
-                        <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Add Squad</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                                <table class="table my-0" id="dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>ClientID</th>
-                                            <th>Description</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <form method="POST" action="php/addsquad.php">
-                                        <tbody>
-                                            <tr>
-                                                <td><input class="form-control form-control-sm" type="text" id="Name" placeholder="Name" name="name"></td>
-                                                <td>
-                                                    <select class="d-inline-block form-select form-select-sm" name="ClientID">
-                                                        <?php
-                                                        require_once 'php/listclients.php';
-                                                        foreach ($rows as $row) :
-                                                            $ClientID = $row['ClientID'];
-                                                        ?>
-                                                            <option value="<?php echo $ClientID; ?>"><?php echo $ClientID; ?></option>
-                                                        <?php endforeach; ?>
-                                                    </select>&nbsp;
-                                                </td>
-                                                <td><input class="form-control form-control-sm" type="text" id="Description" placeholder="Description" name="description"></td>
-                                                <td><input type="submit" class="btn btn-primary btn-sm" name="submit" value="Add Squad"></td>
-                                            </tr>
-                                        </tbody>
-                                    </form>
-                                </table>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 align-self-center">
-                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Fill in all fields to add a squad</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="text-dark mb-4">Squad</h3>
+                            <div class="card shadow">
+                                <div class="card-header py-3">
+                                    <p class="text-primary m-0 fw-bold">Squad Information</p>
                                 </div>
-                                <div class="col-md-6">
-                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers"></nav>
+                                <div class="card-body">
+                                    <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                        <table class="table my-0" id="dataTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Description</th>
+                                                    <th colspan="1"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($squads as $squad) : ?>
+                                                    <tr>
+                                                        <td><?php echo $squad['SquadName']; ?></td>
+                                                        <td><?php echo $squad['Description']; ?></td>
+                                                        <td><a href="feed.php?id=<?php echo $squad['SquadID']; ?>"><button class="btn btn-primary">View</button></a></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="text-dark mb-4">Objectives</h3>
+                            <div class="card shadow">
+                                <div class="card-header py-3">
+                                    <p class="text-primary m-0 fw-bold">Stream Latest Feed of Squad Objectives</p>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                        <table class="table my-0" id="dataTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Title</th>
+                                                    <th>Activity</th>
+                                                    <th>Location</th>
+                                                    <th colspan="1"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($objectives as $objective) : ?>
+                                                    <?php if ($objective["SquadID"] == $selectedSquad) : ?>
+                                                        <tr>
+                                                            <td><?php echo $objective['Title']; ?></td>
+                                                            <td><?php echo $objective['Activity']; ?></td>
+                                                            <td><?php echo $objective['Location']; ?></td>
+                                                            <td><a href="feed.php?id=<?php echo $selectedSquad; ?>&object_id=<?php echo $objective['ObjectiveID']; ?>"><button class="btn btn-primary">Play</button></a></td>
+                                                        </tr>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
