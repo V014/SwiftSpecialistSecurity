@@ -1,5 +1,12 @@
 <?php
 require_once 'php/displayterrain.php';
+
+$clientID = 1;
+
+if (isset($_GET['id']) && $_GET['id'] !== '') {
+    $clientID = $_GET['id'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -182,10 +189,12 @@ require_once 'php/displayterrain.php';
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($squads as $squad) : ?>
-                                                    <tr>
-                                                        <td><?php echo $squad['SquadName']; ?></td>
-                                                        <td><?php echo $squad['Description']; ?></td>
-                                                    </tr>
+                                                    <?php if ($squad["ClientID"] === $clientID) : ?>
+                                                        <tr>
+                                                            <td><?php echo $squad['SquadName']; ?></td>
+                                                            <td><?php echo $squad['Description']; ?></td>
+                                                        </tr>
+                                                    <?php endif; ?>
                                                 <?php endforeach; ?>
                                             </tbody>
                                         </table>
