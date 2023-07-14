@@ -35,14 +35,16 @@ ToTime datetime
 Activity text
 DateSet TimeStamp
 
-Client 
+Client
 ClientID int (PK auto_increment)
 Name text
 Contact text
 Description text
 DateAdded TimeStamp
+Location POINT
+SquadID INT
 
-Admin 
+Admin
 AdminID int (PK auto_increment)
 Name text
 UserID int (FK)
