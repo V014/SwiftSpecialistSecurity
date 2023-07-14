@@ -12,7 +12,7 @@ if ($result->num_rows > 0) {
     }
 }
 
-$sql = "SELECT * FROM client";
+$sql = "SELECT *, ST_X(Location) AS Longitude, ST_Y(Location) AS Latitude FROM client";
 $result = $connection->query($sql);
 $clients = array();
 

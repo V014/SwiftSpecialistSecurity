@@ -1,10 +1,18 @@
 <?php
 require_once 'php/displayterrain.php';
 
+$selectedClient = null;
 $clientID = 1;
 
 if (isset($_GET['id']) && $_GET['id'] !== '') {
     $clientID = $_GET['id'];
+}
+
+foreach ($clients as $client) {
+    if ($client["ClientID"] == $clientID) {
+        $selectedClient = $client;
+        break;
+    }
 }
 
 ?>
@@ -19,6 +27,15 @@ if (isset($_GET['id']) && $_GET['id'] !== '') {
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+            margin-bottom: 16px;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -140,6 +157,9 @@ if (isset($_GET['id']) && $_GET['id'] !== '') {
                 </nav>
                 <div class="container-fluid">
                     <div class="row">
+                        <div id="map"></div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
                             <h3 class="text-dark mb-4">Client</h3>
                             <div class="card shadow">
@@ -215,6 +235,19 @@ if (isset($_GET['id']) && $_GET['id'] !== '') {
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script>
+        var map = L.map('map').setView([<?php echo $selectedClient["Longitude"]; ?>, <?php echo $selectedClient["Latitude"]; ?>], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 50,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        L.marker(
+            [<?php echo $selectedClient["Longitude"]; ?>, <?php echo $selectedClient["Latitude"]; ?>], {
+                title: '<?php echo $selectedClient["Name"]; ?>',
+            }
+        ).addTo(map);
+    </script>
 </body>
 
 </html>
