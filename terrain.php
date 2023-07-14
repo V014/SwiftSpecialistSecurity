@@ -1,5 +1,5 @@
 <?php
-require_once 'php/displaysquads.php';
+require_once 'php/displayterrain.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -162,12 +162,12 @@ require_once 'php/displaysquads.php';
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($rows as $row) : ?>
+                                        <?php foreach ($squads as $squad) : ?>
                                             <tr>
-                                                <td><?php echo $row['SquadName']; ?></td>
-                                                <td><?php echo $row['Description']; ?></td>
-                                                <td><?php echo $row['ClientID']; ?></td>
-                                                <td><?php echo $row['DateAdded']; ?></td>
+                                                <td><?php echo $squad['SquadName']; ?></td>
+                                                <td><?php echo $squad['Description']; ?></td>
+                                                <td><?php echo $squad['ClientID']; ?></td>
+                                                <td><?php echo $squad['DateAdded']; ?></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
