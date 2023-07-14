@@ -53,17 +53,18 @@ CREATE TABLE `client` (
   `Name` varchar(50) DEFAULT NULL,
   `Contact` varchar(255) DEFAULT NULL,
   `Description` text DEFAULT NULL,
-  `DateAdded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `DateAdded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Location` POINT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `client`
 --
 
-INSERT INTO `client` (`ClientID`, `Name`, `Contact`, `Description`, `DateAdded`) VALUES
-(1, 'ABC Corp', '+1 (123) 456-7890', 'ABC Street, New York, A technology company focused on software development.', '2023-04-30 13:16:29'),
-(2, 'XYZ Corp', '+1 (987) 654-3210', 'XYZ Road, San Francisco, A technology company focused on hardware manufacturing.', '2023-04-30 13:16:29'),
-(4, 'LOOP', '+1 (123) 443-4495', 'LOOP Street, Florida, A technology company focused on Artificial Intelligence.', '2023-04-30 13:39:28');
+INSERT INTO `client` (`ClientID`, `Name`, `Contact`, `Description`, `DateAdded`, `Location`) VALUES
+(1, 'ABC Corp', '+1 (123) 456-7890', 'ABC Street, New York, A technology company focused on software development.', '2023-04-30 13:16:29', ST_GeomFromText('POINT(-15.791887 35.005147)')),
+(2, 'XYZ Corp', '+1 (987) 654-3210', 'XYZ Road, San Francisco, A technology company focused on hardware manufacturing.', '2023-04-30 13:16:29', ST_GeomFromText('POINT(-15.791495 35.007271)')),
+(4, 'LOOP', '+1 (123) 443-4495', 'LOOP Street, Florida, A technology company focused on Artificial Intelligence.', '2023-04-30 13:39:28', ST_GeomFromText('POINT(-15.788243 35.004224)'));
 
 -- --------------------------------------------------------
 

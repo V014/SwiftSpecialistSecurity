@@ -34,6 +34,8 @@ require_once 'php/countsquads.php';
                     <li class="nav-item"><a class="nav-link" href="clients.php"><i class="fas fa-table"></i><span>Clients</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="squads.php"><i class="fas fa-table"></i><span>Squads</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="reports.php"><i class="fas fa-table"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="feed.php"><i class="fas fa-table"></i><span>Feed</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="terrain.php"><i class="fas fa-table"></i><span>Terrain</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="php/logout.php"><i class="fas fa-door-open"></i><span>Logout</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
@@ -204,7 +206,7 @@ require_once 'php/countsquads.php';
                                 </div>
                             </div>
                         </div>
-                    </div>        
+                    </div>
                 </div>
             </div>
             <footer class="bg-white sticky-footer">

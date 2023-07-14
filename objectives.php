@@ -1,7 +1,7 @@
 <?php
-    require_once 'php/connection.php'; // include database
-    require_once 'php/displayobjectives.php';
-    require_once 'php/countsquads.php';
+require_once 'php/connection.php'; // include database
+require_once 'php/displayobjectives.php';
+require_once 'php/countsquads.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +30,8 @@
                     <li class="nav-item"><a class="nav-link" href="clients.php"><i class="fas fa-table"></i><span>Clients</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="squads.php"><i class="fas fa-table"></i><span>Squads</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="reports.php"><i class="fas fa-table"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="feed.php"><i class="fas fa-table"></i><span>Feed</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="terrain.php"><i class="fas fa-table"></i><span>Terrain</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="php/logout.php"><i class="fas fa-door-open"></i><span>Logout</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
@@ -171,7 +173,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($rows as $row): ?>
+                                        <?php foreach ($rows as $row) : ?>
                                             <tr>
                                                 <td><?php echo $row['ObjectiveID']; ?></td>
                                                 <td><?php echo $row['SquadID']; ?></td>
@@ -183,7 +185,7 @@
                                                 <td><?php echo $row['DateSet']; ?></td>
                                                 <td>
                                                     <form method="POST" action="php/deleteobjective.php">
-                                                        <button class="btn btn-primary btn-sm" name="ObjectiveID" value="<?php echo $row['ObjectiveID'];?>">Delete</button>
+                                                        <button class="btn btn-primary btn-sm" name="ObjectiveID" value="<?php echo $row['ObjectiveID']; ?>">Delete</button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -243,17 +245,17 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                <select class="d-inline-block form-select form-select-sm" name="SquadID">
-                                                    <?php 
+                                                    <select class="d-inline-block form-select form-select-sm" name="SquadID">
+                                                        <?php
                                                         require_once 'php/listsquads.php';
-                                                        foreach ($rows as $row): 
+                                                        foreach ($rows as $row) :
                                                             $squadID = $row['SquadID'];
-                                                    ?>
+                                                        ?>
                                                             <option value="<?php echo $squadID; ?>"><?php echo $squadID; ?></option>
-                                                    <?php
-                                                        endforeach; 
-                                                    ?>
-                                                </select>&nbsp;
+                                                        <?php
+                                                        endforeach;
+                                                        ?>
+                                                    </select>&nbsp;
                                                 </td>
                                                 <td><input class="form-control form-control-sm" type="text" id="title" placeholder="Title" name="title"></td>
                                                 <td><input class="form-control form-control-sm" type="text" id="activity" placeholder="Activity" name="activity"></td>
@@ -272,7 +274,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                        
+
                                     </nav>
                                 </div>
                             </div>

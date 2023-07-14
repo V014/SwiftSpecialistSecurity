@@ -1,5 +1,5 @@
 <?php
-    require_once 'php/displayreports.php';
+require_once 'php/displayreports.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +28,8 @@
                     <li class="nav-item"><a class="nav-link" href="squadclients.php"><i class="fas fa-table"></i><span>Clients</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="squadlist.php"><i class="fas fa-table"></i><span>Squads</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="squadreports.php"><i class="fas fa-table"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="feed.php"><i class="fas fa-table"></i><span>Feed</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="terrain.php"><i class="fas fa-table"></i><span>Terrain</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="php/logout.php"><i class="fas fa-door-open"></i><span>Logout</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
@@ -159,7 +161,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($rows as $row): ?>
+                                        <?php foreach ($rows as $row) : ?>
                                             <tr>
                                                 <td><?php echo $row['ObjectiveID']; ?></td>
                                                 <td><?php echo $row['Report']; ?></td>
@@ -194,56 +196,56 @@
                             </div>
                         </div>
                         <div class="card shadow">
-                        <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Write Report</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                                <table class="table my-0" id="dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>ObjectiveID</th>
-                                            <th>Report</th>
-                                            <th>Media</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <form method="POST" action="php/addreport.php" enctype="multipart/form-data">
-                                        <tbody>
+                            <div class="card-header py-3">
+                                <p class="text-primary m-0 fw-bold">Write Report</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                    <table class="table my-0" id="dataTable">
+                                        <thead>
                                             <tr>
-                                                <td>
-                                                <select class="d-inline-block form-select form-select-sm" name="ObjectiveID">
-                                                    <?php 
-                                                        require_once 'php/listobjectives.php';
-                                                        foreach ($rows as $row): 
-                                                            $objectiveID = $row['ObjectiveID'];
-                                                    ?>
-                                                            <option value="<?php echo $objectiveID; ?>"><?php echo $objectiveID; ?></option>
-                                                    <?php
-                                                        endforeach; 
-                                                    ?>
-                                                </select>&nbsp;
-                                                </td>
-                                                <td><textarea class="form-control form-control-sm" id="report" placeholder="Report" rows="4" name="report"></textarea></td>
-                                                <td><input class="form-control form-control-sm" type="file" name="filesToUpload" value="Upload"></td>
-                                                <td><input class="form-control form-control-sm btn btn-primary btn-sm" type="submit" name="submit" value="Write Report"></td>
+                                                <th>ObjectiveID</th>
+                                                <th>Report</th>
+                                                <th>Media</th>
+                                                <th>Action</th>
                                             </tr>
-                                        </tbody>
-                                    </form>
-                                </table>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 align-self-center">
-                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Fill in all fields to write a report</p>
+                                        </thead>
+                                        <form method="POST" action="php/addreport.php" enctype="multipart/form-data">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <select class="d-inline-block form-select form-select-sm" name="ObjectiveID">
+                                                            <?php
+                                                            require_once 'php/listobjectives.php';
+                                                            foreach ($rows as $row) :
+                                                                $objectiveID = $row['ObjectiveID'];
+                                                            ?>
+                                                                <option value="<?php echo $objectiveID; ?>"><?php echo $objectiveID; ?></option>
+                                                            <?php
+                                                            endforeach;
+                                                            ?>
+                                                        </select>&nbsp;
+                                                    </td>
+                                                    <td><textarea class="form-control form-control-sm" id="report" placeholder="Report" rows="4" name="report"></textarea></td>
+                                                    <td><input class="form-control form-control-sm" type="file" name="filesToUpload" value="Upload"></td>
+                                                    <td><input class="form-control form-control-sm btn btn-primary btn-sm" type="submit" name="submit" value="Write Report"></td>
+                                                </tr>
+                                            </tbody>
+                                        </form>
+                                    </table>
                                 </div>
-                                <div class="col-md-6">
-                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                        
-                                    </nav>
+                                <div class="row">
+                                    <div class="col-md-6 align-self-center">
+                                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Fill in all fields to write a report</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+
+                                        </nav>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>

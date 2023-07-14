@@ -1,5 +1,5 @@
 <?php
-    require_once 'php/displaysquads.php';
+require_once 'php/displaysquads.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +28,8 @@
                     <li class="nav-item"><a class="nav-link" href="clients.php"><i class="fas fa-table"></i><span>Clients</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="squads.php"><i class="fas fa-table"></i><span>Squads</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="reports.php"><i class="fas fa-table"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="feed.php"><i class="fas fa-table"></i><span>Feed</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="terrain.php"><i class="fas fa-table"></i><span>Terrain</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="php/logout.php"><i class="fas fa-door-open"></i><span>Logout</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
@@ -161,7 +163,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($rows as $row): ?>
+                                        <?php foreach ($rows as $row) : ?>
                                             <tr>
                                                 <td><?php echo $row['SquadName']; ?></td>
                                                 <td><?php echo $row['Description']; ?></td>
@@ -169,7 +171,7 @@
                                                 <td><?php echo $row['DateAdded']; ?></td>
                                                 <td>
                                                     <form method="POST" action="php/deletesquad.php">
-                                                        <button class="btn btn-primary btn-sm" name="SquadID" value="<?php echo $row['SquadID'];?>">Delete</button>
+                                                        <button class="btn btn-primary btn-sm" name="SquadID" value="<?php echo $row['SquadID']; ?>">Delete</button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -225,12 +227,12 @@
                                                 <td><input class="form-control form-control-sm" type="text" id="Name" placeholder="Name" name="name"></td>
                                                 <td>
                                                     <select class="d-inline-block form-select form-select-sm" name="ClientID">
-                                                        <?php 
-                                                            require_once 'php/listclients.php';
-                                                            foreach ($rows as $row): 
-                                                                $ClientID = $row['ClientID'];
+                                                        <?php
+                                                        require_once 'php/listclients.php';
+                                                        foreach ($rows as $row) :
+                                                            $ClientID = $row['ClientID'];
                                                         ?>
-                                                                <option value="<?php echo $ClientID; ?>"><?php echo $ClientID; ?></option>
+                                                            <option value="<?php echo $ClientID; ?>"><?php echo $ClientID; ?></option>
                                                         <?php endforeach; ?>
                                                     </select>&nbsp;
                                                 </td>
