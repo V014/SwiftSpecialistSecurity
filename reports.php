@@ -1,5 +1,5 @@
 <?php
-    require_once 'php/displayreports.php';
+require_once 'php/displayreports.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +28,8 @@
                     <li class="nav-item"><a class="nav-link" href="clients.php"><i class="fas fa-table"></i><span>Clients</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="squads.php"><i class="fas fa-table"></i><span>Squads</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="reports.php"><i class="fas fa-table"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="feed.php"><i class="fas fa-table"></i><span>Feed</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="terrain.php"><i class="fas fa-table"></i><span>Terrain</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="php/logout.php"><i class="fas fa-door-open"></i><span>Logout</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
@@ -160,14 +162,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($rows as $row): ?>
+                                        <?php foreach ($rows as $row) : ?>
                                             <tr>
                                                 <td><?php echo $row['Report']; ?></td>
                                                 <td><?php echo $row['ObjectiveID']; ?></td>
                                                 <td><?php echo $row['Date']; ?></td>
                                                 <td>
                                                     <form method="POST" action="php/deletereport.php">
-                                                        <button class="btn btn-primary btn-sm" name="ReportID" value="<?php echo $row['ReportID'];?>">Delete</button>
+                                                        <button class="btn btn-primary btn-sm" name="ReportID" value="<?php echo $row['ReportID']; ?>">Delete</button>
                                                     </form>
                                                 </td>
                                             </tr>

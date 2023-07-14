@@ -1,5 +1,5 @@
 <?php
-    require_once 'php/displaysquads.php';
+require_once 'php/displaysquads.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +28,8 @@
                     <li class="nav-item"><a class="nav-link" href="squadclients.php"><i class="fas fa-table"></i><span>Clients</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="squadlist.php"><i class="fas fa-table"></i><span>Squads</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="squadreports.php"><i class="fas fa-table"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="feed.php"><i class="fas fa-table"></i><span>Feed</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="terrain.php"><i class="fas fa-table"></i><span>Terrain</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="php/logout.php"><i class="fas fa-door-open"></i><span>Logout</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
@@ -160,7 +162,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($rows as $row): ?>
+                                        <?php foreach ($rows as $row) : ?>
                                             <tr>
                                                 <td><?php echo $row['SquadName']; ?></td>
                                                 <td><?php echo $row['Description']; ?></td>
