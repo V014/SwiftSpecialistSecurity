@@ -7,7 +7,7 @@ require_once 'php/displaysquads.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Squad List</title>
+    <title>Squads</title>
     <meta name="description" content="This is a company that delivers security services both physically and virtually to it's clients and enables proper and coordinated security services. If you have an emergency, you can still hit the alert button and we will contact and reach you. On reach, we will request for more details if you wish to be our client.">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
@@ -23,13 +23,13 @@ require_once 'php/displaysquads.php';
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="squadhome.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="squadObjectives.php"><i class="fas fa-list"></i><span>Objectives</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="squadclients.php"><i class="fas fa-table"></i><span>Clients</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="squadlist.php"><i class="fas fa-table"></i><span>Squads</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="squadreports.php"><i class="fas fa-table"></i><span>Reports</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="feed.php"><i class="fas fa-table"></i><span>Feed</span></a></li>
-                    <li class="nav-item"><a class="nav-link active" href="terrain.php"><i class="fas fa-table"></i><span>Terrain</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="Objectives.php"><i class="fas fa-list"></i><span>Objectives</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="clients.php"><i class="fas fa-table"></i><span>Clients</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="squads.php"><i class="fas fa-table"></i><span>Squads</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="reports.php"><i class="fas fa-table"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="feed.php"><i class="fas fa-table"></i><span>Feed</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="terrain.php"><i class="fas fa-table"></i><span>Terrain</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="php/logout.php"><i class="fas fa-door-open"></i><span>Logout</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
@@ -159,6 +159,7 @@ require_once 'php/displaysquads.php';
                                             <th>Description</th>
                                             <th>ClientID</th>
                                             <th>Date Added</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -168,6 +169,11 @@ require_once 'php/displaysquads.php';
                                                 <td><?php echo $row['Description']; ?></td>
                                                 <td><?php echo $row['ClientID']; ?></td>
                                                 <td><?php echo $row['DateAdded']; ?></td>
+                                                <td>
+                                                    <form method="POST" action="php/deletesquad.php">
+                                                        <button class="btn btn-primary btn-sm" name="SquadID" value="<?php echo $row['SquadID']; ?>">Delete</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -177,6 +183,7 @@ require_once 'php/displaysquads.php';
                                             <td><strong>Description</strong></td>
                                             <td><strong>ClientID</strong></td>
                                             <td><strong>Date Added</strong></td>
+                                            <td><strong>Action</strong></td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -195,6 +202,53 @@ require_once 'php/displaysquads.php';
                                             <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
                                         </ul>
                                     </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Add Squad</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                <table class="table my-0" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>ClientID</th>
+                                            <th>Description</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <form method="POST" action="php/addsquad.php">
+                                        <tbody>
+                                            <tr>
+                                                <td><input class="form-control form-control-sm" type="text" id="Name" placeholder="Name" name="name"></td>
+                                                <td>
+                                                    <select class="d-inline-block form-select form-select-sm" name="ClientID">
+                                                        <?php
+                                                        require_once 'php/listclients.php';
+                                                        foreach ($rows as $row) :
+                                                            $ClientID = $row['ClientID'];
+                                                        ?>
+                                                            <option value="<?php echo $ClientID; ?>"><?php echo $ClientID; ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>&nbsp;
+                                                </td>
+                                                <td><input class="form-control form-control-sm" type="text" id="Description" placeholder="Description" name="description"></td>
+                                                <td><input type="submit" class="btn btn-primary btn-sm" name="submit" value="Add Squad"></td>
+                                            </tr>
+                                        </tbody>
+                                    </form>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 align-self-center">
+                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Fill in all fields to add a squad</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers"></nav>
                                 </div>
                             </div>
                         </div>
