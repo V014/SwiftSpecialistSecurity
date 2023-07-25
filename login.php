@@ -54,6 +54,8 @@ if(isset($_SESSION['reply'])){
                                             </div>
                                         </div>
                                         <button class="btn btn-primary d-block btn-user w-100" type="submit" value="submit">Login</button>
+                                        <br>
+                                        <a href="index.php" class="btn btn-outline-primary d-block btn-user w-100">Return Home</a>
                                         <?php unset($_SESSION['reply']); ?>
                                         
                                     </form>

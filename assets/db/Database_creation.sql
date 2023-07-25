@@ -143,3 +143,11 @@ CREATE TABLE `media` (
   `ObjectiveID` int(11) NOT NULL,
   FOREIGN KEY (ObjectiveID) REFERENCES objectives (ObjectiveID)
 );
+
+-- Alarm table --
+CREATE TABLE `alarm` (
+  `AlarmID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `ClientID` int(11) NOT NULL,
+  `Status` text NOT NULL,
+  FOREIGN KEY (ClientID) REFERENCES client (ClientID)
+);
