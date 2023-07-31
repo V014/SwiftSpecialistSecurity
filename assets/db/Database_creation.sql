@@ -151,3 +151,11 @@ CREATE TABLE `alarm` (
   `Status` text NOT NULL,
   FOREIGN KEY (ClientID) REFERENCES client (ClientID)
 );
+
+-- user code table --
+CREATE TABLE `usercode` (
+  `UsercodeID`int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `ClientID` int(11) NOT NULL,
+  `Code` text NOT NULL,
+  FOREIGN KEY (ClientID) REFERENCES client (ClientID)
+);

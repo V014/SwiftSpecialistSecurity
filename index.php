@@ -83,11 +83,11 @@
                                     <div>
                                         <h2 class="text-uppercase fw-bold mb-3">WELCOME BACK</h2>
                                         <p class="mb-4">For our clients, they will be able to send alerts without login in. For users who aren't our clients, we will send you a bill and registration form. If you would like to be aware of security events, subscribe to our newsletter.</p>
-                                        <form action="POST" action="assets/php/soundalarm.php">
-                                            <input class="form-control form-control" type="text" placeholder="user alert code" required>
+                                        <form method="POST" action="php/alarm.php">
+                                            <input class="form-control form-control" type="text" name="usercode" placeholder="user alert code" required>
                                             <br>
-                                            <button class="btn btn-primary fs-5 me-2 py-2 px-4" type="submit" name="alarm">Sound alarm</button>
-                                            <button class="btn btn-outline-primary fs-5 py-2 px-4" type="submit" name="subscribe">Subscribe</button>
+                                            <button class="btn btn-primary fs-5 me-2 py-2 px-4" type="submit" name="trigger">Sound alarm</Button>
+                                            <a href="subscribe.php" class="btn btn-outline-primary fs-5 py-2 px-4">Subscribe</a>
                                         </form>
                                     </div>
                                 </div>
