@@ -6,6 +6,7 @@ require_once 'php/countclients.php';
 require_once 'php/countobjectives.php';
 require_once 'php/countreports.php';
 require_once 'php/countsquads.php';
+require_once 'php/countalarms.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -206,6 +207,21 @@ require_once 'php/countsquads.php';
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-start-warning py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase text-danger fw-bold text-xs mb-1"><span>Alarms</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0">
+                                                <span id="num-alarm"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-exclamation fa-2x text-gray-300"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -248,6 +264,14 @@ require_once 'php/countsquads.php';
         // Display the result on the page
         var num_squad = document.getElementById('num-squad');
         num_squad.textContent = squad;
+
+        // Retrieve the alarm count from the PHP file
+        var alarm_json = '<?php echo $alarm_json; ?>';
+        var alarm = JSON.parse(alarm_json);
+
+        // Display the result on the page
+        var num_alarm = document.getElementById('num-alarm');
+        num_alarm.textContent = alarm;
     </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/chart.min.js"></script>
