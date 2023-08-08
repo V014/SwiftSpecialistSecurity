@@ -47,11 +47,11 @@ foreach ($clients as $client) {
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="squadhome.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="squadObjectives.php"><i class="fas fa-list"></i><span>Objectives</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="squadclients.php"><i class="fas fa-table"></i><span>Clients</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="squadlist.php"><i class="fas fa-table"></i><span>Squads</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="squadreports.php"><i class="fas fa-table"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="Objectives.php"><i class="fas fa-list"></i><span>Objectives</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="clients.php"><i class="fas fa-table"></i><span>Clients</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="list.php"><i class="fas fa-table"></i><span>Squads</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="reports.php"><i class="fas fa-table"></i><span>Reports</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="feed.php"><i class="fas fa-table"></i><span>Feed</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="terrain.php"><i class="fas fa-table"></i><span>Terrain</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="php/logout.php"><i class="fas fa-door-open"></i><span>Logout</span></a></li>

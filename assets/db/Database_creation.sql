@@ -149,6 +149,7 @@ CREATE TABLE `alarm` (
   `AlarmID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `ClientID` int(11) NOT NULL,
   `Status` text NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   FOREIGN KEY (ClientID) REFERENCES client (ClientID)
 );
 
@@ -157,5 +158,6 @@ CREATE TABLE `usercode` (
   `UsercodeID`int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `ClientID` int(11) NOT NULL,
   `Code` text NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   FOREIGN KEY (ClientID) REFERENCES client (ClientID)
 );
