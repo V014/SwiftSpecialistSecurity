@@ -161,3 +161,30 @@ CREATE TABLE `usercode` (
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   FOREIGN KEY (ClientID) REFERENCES client (ClientID)
 );
+
+-- announcements table --
+CREATE TABLE `announcements` (
+  `AnnouncementID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `Title` text NOT NULL,
+  `Message` text,
+  `Date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+);
+
+INSERT INTO `announcements` (`AnnouncementID`, `Title`, `Message`, `Date`) VALUES
+(1, 'Welcome', 'We are glad that you have chosen Swift Security Specialists to keep you safe from the dangers of the world, we aim to keep you informed and satisfied with our service delivery', '2023-08-26 14:56:31'),
+(2, 'Payments', 'A new payment system is under development, we will let you know once its ready. This will let you submit you recipt number for each payment for confimation', '2023-08-26 14:56:31'),
+(3, 'Profile', 'A profile section is also under development to personalize your experience on the system, we will let you know when its ready.', '2023-08-26 14:56:31');
+
+-- Client payments table --
+CREATE TABLE `clientpayments` (
+  `PaymentID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `ClientID` int NOT NULL,
+  `Amount` text,
+  `Date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  FOREIGN KEY (ClientID) REFERENCES client (ClientID)
+);
+
+INSERT INTO `clientpayments` (`PaymentID`, `ClientID`, `Amount`, `Date`) VALUES
+(1, 1, 50000, '2023-07-30 14:56:31'),
+(2, 2, 50000, '2023-08-30 14:56:31'),
+(3, 1, 50000, '2023-08-30 14:56:31');

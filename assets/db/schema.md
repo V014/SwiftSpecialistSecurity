@@ -1,32 +1,32 @@
-users
-UserID Int (PK auto_increment)
-Status Text (Online/Offline)
+1. users 
+UserID Int (PK)
+Status Text 
 Email Text
 Password Text
 
-Unit
-UnitID int (PK auto_increment)
+2. Unit 
+UnitID int (PK)
 UnitName text
 SquadID int
 Description text
 DateAdded TimeStamp
 
-Squad
-SquadID int (PK auto_increment)
+3. Squad 
+SquadID int (PK)
 SquadName text
 Description text
 ClinetID int
 DateAdded TimeStamp
 
-report
-ReportID int (PK auto_increment)
+4. report 
+ReportID int (PK)
 Report text
 ObjectiveID int
 UnitID int
 Date TimeStamp
 
-Objectives
-ObjectiveID int (PK auto_increment)
+5. Objectives 
+ObjectiveID int (PK)
 Title text
 SquadID int (FK)
 Location text
@@ -35,8 +35,8 @@ ToTime datetime
 Activity text
 DateSet TimeStamp
 
-Client
-ClientID int (PK auto_increment)
+6. Client 
+ClientID int (PK)
 Name text
 Contact text
 Description text
@@ -44,33 +44,57 @@ DateAdded TimeStamp
 Location POINT
 SquadID INT
 
-Admin
-AdminID int (PK auto_increment)
+7. Admin 
+AdminID int (PK)
 Name text
 UserID int (FK)
 DateAdded TimeStamp
 
-Media
-MediaID int (PK auto_increment)
+8. Media 
+MediaID int (PK)
 ObjectiveID int (FK)
 Path text
 Date TimeStamp
 
-Vehicle
-VehicleID int (PK auto_increment)
+9. Vehicle 
+VehicleID int (PK)
 RegistrationNumber int
 SquadID int (FK)
 DateAdded TimeStamp
 
-Payments
-PaymentID int (PK auto_increment)
+10. Payments 
+PaymentID int (PK)
 UnitID int (FK)
 Role text
 Amount int
 Date TimeStamp
 
-K9
-K9ID int (PK auto_increment)
+11. K9 
+K9ID int (PK)
 Breed text
 SquadID int (FK)
 DateAdded TimeStamp
+
+12. Announcements 
+AnnouncementID int (PK)
+Title text NOT NULL
+Message text
+Date TimeStamp
+
+13. Alarm 
+AlarmID int (PK)
+ClientID int (FK)
+Status text
+Date TimeStamp
+
+14. Usercode 
+UserCodeID int (PK)
+ClientID int (FK)
+Code text
+Date TimeStamp
+
+15. Clientpayments
+PaymentID int (PK)
+ClientID int (FK)
+Amount int
+Date TimeStamp
