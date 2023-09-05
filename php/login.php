@@ -28,6 +28,10 @@
                 case 'Squad':
                     header("location: ../squadhome.php");
                     break;
+
+                case 'Client':
+                    header("location: ../clienthome.php");
+                    break;
                 }
         } else { // user credentials are incorrect
             $_SESSION['reply'] = "invalid";

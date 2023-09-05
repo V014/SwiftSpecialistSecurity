@@ -50,6 +50,7 @@ if(isset($_SESSION['reply'])){
                                                 <select class="form-control form-control-user" id="Role" name="role">
                                                 <option value="Admin">Admin</option>
                                                 <option value="Squad">Squad</option>
+                                                <option value="Client">Client</option>
                                                 </select>
                                             </div>
                                         </div>
