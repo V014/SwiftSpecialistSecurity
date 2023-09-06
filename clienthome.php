@@ -2,10 +2,10 @@
 session_start();
 require_once 'php/connection.php';
 require_once 'php/utils.php';
-require_once 'php/countclients.php';
-require_once 'php/countobjectives.php';
-require_once 'php/countreports.php';
-require_once 'php/countsquads.php';
+require_once 'php/countannouncements.php';
+require_once 'php/countpayments.php';
+//require_once 'php/countclientreports.php';
+//require_once 'php/countsecurity.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -146,7 +146,7 @@ require_once 'php/countsquads.php';
                                         <div class="col me-2">
                                             <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Announcements</span></div>
                                             <div class="text-dark fw-bold h5 mb-0">
-                                                <span id="num-clients"></span>
+                                                <span id="num-announcements"></span>
                                             </div>
                                         </div>
                                         <div class="col-auto"><i class="fas fa-users fa-2x text-gray-300"></i></div>
@@ -214,21 +214,21 @@ require_once 'php/countsquads.php';
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
     <script>
-        // Retrieve the client count from the PHP file
-        var result_json = '<?php echo $result_json; ?>';
-        var result = JSON.parse(result_json);
+        // Retrieve the announcements count from the PHP file
+        var announcements_json = '<?php echo $announcements_json; ?>';
+        var announcements = JSON.parse(announcements_json);
 
         // Display the result on the page
-        var num_clients_element = document.getElementById('num-clients');
-        num_clients_element.textContent = result;
+        var num_announcements_element = document.getElementById('num-announcements');
+        num_announcements_element.textContent = announcements;
 
-        // Retrieve the objectives count from the PHP file
-        var objectives_json = '<?php echo $objectives_json; ?>';
-        var objectives = JSON.parse(objectives_json);
+        // Retrieve the Payment count from the PHP file
+        var Payment_json = '<?php echo $Payment_json; ?>';
+        var Payment = JSON.parse(Payment_json);
 
         // Display the result on the page
-        var num_objectives = document.getElementById('num-objectives');
-        num_objectives.textContent = objectives;
+        var num_Payment = document.getElementById('num-Payment');
+        num_Payment.textContent = Payment;
 
         // Retrieve the objectives count from the PHP file
         var report_json = '<?php echo $report_json; ?>';
