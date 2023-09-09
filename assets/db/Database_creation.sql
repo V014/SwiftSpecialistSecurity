@@ -109,6 +109,13 @@ CREATE TABLE `unit` (
   FOREIGN KEY (SquadID) REFERENCES squad (SquadID)
 );
 
+INSERT INTO `unit` (`UnitID`, `UnitName`, `Description`, `SquadID`, `DateAdded`) VALUES
+(1, 'Paul Hopkins', 'K9 weilder with tracking experience', 1, '2023-07-30 14:56:31'),
+(2, 'Ederson Grim', 'Strong and obidient but needs guidance', 1, '2023-08-30 14:56:31'),
+(3, 'Terry Knight', 'Quick and smart, efficient in tight spots', 1, '2023-08-30 14:56:31'),
+(4, 'Mike Hamond', 'Good with mechanism and very handy', 1, '2023-08-30 14:56:31'),
+(5, 'Bob King', 'Good and leading a team and strong in charge', 1, '2023-08-30 14:56:31');
+
 -- report table --
 CREATE TABLE `report` (
   `ReportID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,

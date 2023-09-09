@@ -19,6 +19,7 @@
             // store credentials in sessions
             $_SESSION['username'] = $row['username'];
             $_SESSION['role'] = $row['role'];
+            $_SESSION['UserID'] = $row['UserID'];
             
             switch ($role) {
                 case 'Admin':
@@ -39,5 +40,3 @@
         }
     }
 ?>
-
-

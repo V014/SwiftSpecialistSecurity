@@ -3,9 +3,9 @@ session_start();
 require_once 'php/connection.php';
 require_once 'php/utils.php';
 require_once 'php/countannouncements.php';
-require_once 'php/countpayments.php';
-//require_once 'php/countclientreports.php';
-//require_once 'php/countsecurity.php';
+require_once 'php/countclientpayments.php';
+require_once 'php/countclientreports.php';
+require_once 'php/countsecurity.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -136,7 +136,7 @@ require_once 'php/countpayments.php';
                 </nav>
                 <div class="container-fluid">
                     <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                        <h3 class="text-dark mb-0">Squad Dashboard</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a>
+                        <h3 class="text-dark mb-0">Client Dashboard</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-xl-3 mb-4">
@@ -161,7 +161,7 @@ require_once 'php/countpayments.php';
                                         <div class="col me-2">
                                             <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Payments</span></div>
                                             <div class="text-dark fw-bold h5 mb-0">
-                                                <span id="num-objectives"></span>
+                                                <span id="num-payments"></span>
                                             </div>
                                         </div>
                                         <div class="col-auto"><i class="fas fa-tasks fa-2x text-gray-300"></i></div>
@@ -178,7 +178,7 @@ require_once 'php/countpayments.php';
                                             <div class="row g-0 align-items-center">
                                                 <div class="col-auto">
                                                     <div class="text-dark fw-bold h5 mb-0 me-3">
-                                                        <span id="num-squad"></span>
+                                                        <span id="num-security"></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -223,12 +223,12 @@ require_once 'php/countpayments.php';
         num_announcements_element.textContent = announcements;
 
         // Retrieve the Payment count from the PHP file
-        var Payment_json = '<?php echo $Payment_json; ?>';
-        var Payment = JSON.parse(Payment_json);
+        var payments_json = '<?php echo $payments_json; ?>';
+        var payments = JSON.parse(payments_json);
 
         // Display the result on the page
-        var num_Payment = document.getElementById('num-Payment');
-        num_Payment.textContent = Payment;
+        var num_payments = document.getElementById('num-payments');
+        num_payments.textContent = payments;
 
         // Retrieve the objectives count from the PHP file
         var report_json = '<?php echo $report_json; ?>';
@@ -239,12 +239,12 @@ require_once 'php/countpayments.php';
         num_report.textContent = report;
 
         // Retrieve the squad count from the PHP file
-        var squad_json = '<?php echo $squad_json; ?>';
-        var squad = JSON.parse(squad_json);
+        var security_json = '<?php echo $security_json; ?>';
+        var security = JSON.parse(security_json);
 
         // Display the result on the page
-        var num_squad = document.getElementById('num-squad');
-        num_squad.textContent = squad;
+        var num_security = document.getElementById('num-security');
+        num_security.textContent = security;
     </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/chart.min.js"></script>
