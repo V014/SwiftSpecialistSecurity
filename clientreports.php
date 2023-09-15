@@ -1,5 +1,6 @@
 <?php
-    require_once 'php/displayreports.php';
+    session_start();
+    require_once 'php/displayclientreports.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,13 +24,10 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="squadhome.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="squadObjectives.php"><i class="fas fa-list"></i><span>Objectives</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="squadclients.php"><i class="fas fa-table"></i><span>Clients</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="squadlist.php"><i class="fas fa-table"></i><span>Squads</span></a></li>
-                    <li class="nav-item"><a class="nav-link active" href="squadreports.php"><i class="fas fa-table"></i><span>Reports</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="squadfeed.php"><i class="fas fa-table"></i><span>Feed</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="squadterrain.php"><i class="fas fa-table"></i><span>Terrain</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="clienthome.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="clientreports.php"><i class="fas fa-table"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="clientplayments.php"><i class="fas fa-dollar-sign"></i><span>Payments</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="clientprofile.php"><i class="fas fa-user-circle"></i><span>Profile</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="php/logout.php"><i class="fas fa-door-open"></i><span>Logout</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
@@ -122,7 +120,7 @@
                             </li>
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">Squad</span><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">Client</span><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a><a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
                                         <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
                                     </div>
@@ -155,7 +153,7 @@
                                 <table class="table my-0" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>ObjectiveID</th>
+                                            <th>ReportID</th>
                                             <th>Report</th>
                                             <th>Date</th>
                                         </tr>
@@ -163,7 +161,7 @@
                                     <tbody>
                                         <?php foreach ($rows as $row) : ?>
                                             <tr>
-                                                <td><?php echo $row['ObjectiveID']; ?></td>
+                                                <td><?php echo $row['ReportID']; ?></td>
                                                 <td><?php echo $row['Report']; ?></td>
                                                 <td><?php echo $row['Date']; ?></td>
                                             </tr>
@@ -171,7 +169,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td><strong>ObjectiveID</strong></td>
+                                            <td><strong>ReportID</strong></td>
                                             <td><strong>Report</strong></td>
                                             <td><strong>Date</strong></td>
                                         </tr>
