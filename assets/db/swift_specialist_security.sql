@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2023 at 09:37 PM
+-- Generation Time: Sep 26, 2023 at 10:19 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -100,7 +100,9 @@ CREATE TABLE `client` (
 INSERT INTO `client` (`ClientID`, `UserID`, `Name`, `Contact`, `Description`, `DateAdded`, `Location`) VALUES
 (1, NULL, 'ABC Corp', '+1 (123) 456-7890', 'ABC Street, New York, A technology company focused on software development.', '2023-04-30 11:16:29', 0x0000000001010000004e417e3672952fc015562aa8a8804140),
 (2, NULL, 'XYZ Corp', '+1 (987) 654-3210', 'XYZ Road, San Francisco, A technology company focused on hardware manufacturing.', '2023-04-30 11:16:29', 0x00000000010100000021e527d53e952fc0c89a9141ee804140),
-(4, NULL, 'LOOP', '+1 (123) 443-4495', 'LOOP Street, Florida, A technology company focused on Artificial Intelligence.', '2023-04-30 11:39:28', 0x000000000101000000139a249694932fc0dded7a698a804140);
+(3, NULL, 'LOOP', '+1 (123) 443-4495', 'LOOP Street, Florida, A technology company focused on Artificial Intelligence.', '2023-09-26 20:10:16', 0x000000000101000000139a249694932fc0dded7a698a804140),
+(4, 5, 'Robins', '+26501123344', 'Private residence located in Nymbadwe right after the filling station, first left into the neighborhood then another left, house number 2.', '2023-09-26 20:14:35', 0x000000000101000000139a249694932fc0dded7a698a804140),
+(5, 6, 'Khalifa', '+26501123213', 'Private residence for a group of legal practitioners located in Chinyonga, right after the round about, the first house opposite the nursery.', '2023-09-26 20:14:35', 0x000000000101000000139a249694932fc0dded7a698a804140);
 
 -- --------------------------------------------------------
 
@@ -239,9 +241,9 @@ CREATE TABLE `squad` (
 INSERT INTO `squad` (`SquadID`, `SquadName`, `Description`, `ClientID`, `DateAdded`) VALUES
 (1, 'Team Alpha', 'Elite team of operatives', 1, '2023-04-30 13:10:42'),
 (2, 'Team Bravo', 'Special forces unit', 2, '2023-04-30 13:10:42'),
-(3, 'Team Charlie', 'Counter-terrorism unit', 1, '2023-04-30 13:10:42'),
-(4, 'Team Delta', 'Intelligence gathering unit', 2, '2023-04-30 13:10:42'),
-(5, 'Team Echo', 'Underwater operations team', 1, '2023-04-30 13:10:42');
+(3, 'Team Charlie', 'Counter-terrorism unit', 3, '2023-09-26 20:17:09'),
+(4, 'Team Delta', 'Intelligence gathering unit', 4, '2023-09-26 20:17:16'),
+(5, 'Team Echo', 'Underwater operations team', 5, '2023-09-26 20:17:23');
 
 -- --------------------------------------------------------
 
@@ -292,7 +294,9 @@ INSERT INTO `users` (`UserID`, `Username`, `Password`, `LastOnline`, `role`) VAL
 (1, 'john', 'john123', '2023-04-26 07:38:31', 'Admin'),
 (2, 'jane', 'jane123', '2023-04-26 07:38:31', 'Admin'),
 (3, 'alpha', 'alpha123', '2023-04-26 07:38:57', 'Squad'),
-(4, 'beta', 'Beta123', '2023-04-26 07:38:57', 'Squad');
+(4, 'beta', 'Beta123', '2023-04-26 07:38:57', 'Squad'),
+(5, 'robins', 'robins', '2023-09-26 20:05:58', 'Client'),
+(6, 'Khalifa', 'Khalifa', '2023-09-26 20:07:03', 'Client');
 
 -- --------------------------------------------------------
 
@@ -440,7 +444,7 @@ ALTER TABLE `announcements`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `ClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `clientpayments`
@@ -500,7 +504,7 @@ ALTER TABLE `usercode`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `vehicle`
