@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2023 at 08:39 AM
+-- Generation Time: Sep 26, 2023 at 09:37 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -45,6 +45,41 @@ INSERT INTO `admin` (`AdminID`, `UserID`, `Name`, `DateAdded`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `alarm`
+--
+
+CREATE TABLE `alarm` (
+  `AlarmID` int(11) NOT NULL,
+  `ClientID` int(11) NOT NULL,
+  `Status` text NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `announcements`
+--
+
+CREATE TABLE `announcements` (
+  `AnnouncementID` int(11) NOT NULL,
+  `Title` text NOT NULL,
+  `Message` text DEFAULT NULL,
+  `Date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `announcements`
+--
+
+INSERT INTO `announcements` (`AnnouncementID`, `Title`, `Message`, `Date`) VALUES
+(1, 'Welcome', 'We are glad that you have chosen Swift Security Specialists to keep you safe from the dangers of the world, we aim to keep you informed and satisfied with our service delivery', '2023-08-26 21:56:31'),
+(2, 'Payments', 'A new payment system is under development, we will let you know once its ready. This will let you submit you recipt number for each payment for confimation', '2023-08-26 21:56:31'),
+(3, 'Profile', 'A profile section is also under development to personalize your experience on the system, we will let you know when its ready.', '2023-08-26 21:56:31');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `client`
 --
 
@@ -66,6 +101,28 @@ INSERT INTO `client` (`ClientID`, `UserID`, `Name`, `Contact`, `Description`, `D
 (1, NULL, 'ABC Corp', '+1 (123) 456-7890', 'ABC Street, New York, A technology company focused on software development.', '2023-04-30 11:16:29', 0x0000000001010000004e417e3672952fc015562aa8a8804140),
 (2, NULL, 'XYZ Corp', '+1 (987) 654-3210', 'XYZ Road, San Francisco, A technology company focused on hardware manufacturing.', '2023-04-30 11:16:29', 0x00000000010100000021e527d53e952fc0c89a9141ee804140),
 (4, NULL, 'LOOP', '+1 (123) 443-4495', 'LOOP Street, Florida, A technology company focused on Artificial Intelligence.', '2023-04-30 11:39:28', 0x000000000101000000139a249694932fc0dded7a698a804140);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clientpayments`
+--
+
+CREATE TABLE `clientpayments` (
+  `PaymentID` int(11) NOT NULL,
+  `ClientID` int(11) NOT NULL,
+  `Amount` text DEFAULT NULL,
+  `Date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `clientpayments`
+--
+
+INSERT INTO `clientpayments` (`PaymentID`, `ClientID`, `Amount`, `Date`) VALUES
+(1, 1, '50000', '2023-07-30 21:56:31'),
+(2, 2, '50000', '2023-08-30 21:56:31'),
+(3, 1, '50000', '2023-08-30 21:56:31');
 
 -- --------------------------------------------------------
 
@@ -203,6 +260,19 @@ CREATE TABLE `unit` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `usercode`
+--
+
+CREATE TABLE `usercode` (
+  `UsercodeID` int(11) NOT NULL,
+  `ClientID` int(11) NOT NULL,
+  `Code` text NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -249,11 +319,31 @@ ALTER TABLE `admin`
   ADD KEY `UserID` (`UserID`);
 
 --
+-- Indexes for table `alarm`
+--
+ALTER TABLE `alarm`
+  ADD PRIMARY KEY (`AlarmID`),
+  ADD KEY `ClientID` (`ClientID`);
+
+--
+-- Indexes for table `announcements`
+--
+ALTER TABLE `announcements`
+  ADD PRIMARY KEY (`AnnouncementID`);
+
+--
 -- Indexes for table `client`
 --
 ALTER TABLE `client`
   ADD PRIMARY KEY (`ClientID`),
   ADD KEY `UserID` (`UserID`);
+
+--
+-- Indexes for table `clientpayments`
+--
+ALTER TABLE `clientpayments`
+  ADD PRIMARY KEY (`PaymentID`),
+  ADD KEY `ClientID` (`ClientID`);
 
 --
 -- Indexes for table `k9`
@@ -305,6 +395,13 @@ ALTER TABLE `unit`
   ADD KEY `SquadID` (`SquadID`);
 
 --
+-- Indexes for table `usercode`
+--
+ALTER TABLE `usercode`
+  ADD PRIMARY KEY (`UsercodeID`),
+  ADD KEY `ClientID` (`ClientID`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -328,10 +425,28 @@ ALTER TABLE `admin`
   MODIFY `AdminID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `alarm`
+--
+ALTER TABLE `alarm`
+  MODIFY `AlarmID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `announcements`
+--
+ALTER TABLE `announcements`
+  MODIFY `AnnouncementID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
   MODIFY `ClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `clientpayments`
+--
+ALTER TABLE `clientpayments`
+  MODIFY `PaymentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `k9`
@@ -376,6 +491,12 @@ ALTER TABLE `unit`
   MODIFY `UnitID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `usercode`
+--
+ALTER TABLE `usercode`
+  MODIFY `UsercodeID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -398,10 +519,22 @@ ALTER TABLE `admin`
   ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`);
 
 --
+-- Constraints for table `alarm`
+--
+ALTER TABLE `alarm`
+  ADD CONSTRAINT `alarm_ibfk_1` FOREIGN KEY (`ClientID`) REFERENCES `client` (`ClientID`);
+
+--
 -- Constraints for table `client`
 --
 ALTER TABLE `client`
   ADD CONSTRAINT `client_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`);
+
+--
+-- Constraints for table `clientpayments`
+--
+ALTER TABLE `clientpayments`
+  ADD CONSTRAINT `clientpayments_ibfk_1` FOREIGN KEY (`ClientID`) REFERENCES `client` (`ClientID`);
 
 --
 -- Constraints for table `k9`
@@ -444,6 +577,12 @@ ALTER TABLE `squad`
 --
 ALTER TABLE `unit`
   ADD CONSTRAINT `unit_ibfk_1` FOREIGN KEY (`SquadID`) REFERENCES `squad` (`SquadID`);
+
+--
+-- Constraints for table `usercode`
+--
+ALTER TABLE `usercode`
+  ADD CONSTRAINT `usercode_ibfk_1` FOREIGN KEY (`ClientID`) REFERENCES `client` (`ClientID`);
 
 --
 -- Constraints for table `vehicle`
