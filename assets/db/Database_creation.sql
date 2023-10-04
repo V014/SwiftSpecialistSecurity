@@ -1,4 +1,4 @@
--- users table --
+-- 1. users table --
 CREATE TABLE `users` (
   `UserID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `Username` text DEFAULT NULL,
@@ -13,7 +13,7 @@ INSERT INTO `users` (`UserID`, `Username`, `Password`, `LastOnline`, `role`) VAL
 (3, 'alpha', 'alpha123', '2023-04-26 09:38:57', 'Squad'),
 (4, 'beta', 'Beta123', '2023-04-26 09:38:57', 'Squad');
 
--- admin table --
+-- 2. admin table --
 CREATE TABLE `admin` (
   `AdminID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `UserID` int(11) DEFAULT NULL,
@@ -26,7 +26,7 @@ INSERT INTO `admin` (`AdminID`, `UserID`, `Name`, `DateAdded`) VALUES
 (1, 1, 'John', '2023-06-06 07:31:22'),
 (2, 2, 'Jane', '2023-06-06 07:31:22');
 
--- client table --
+-- 3. client table --
 CREATE TABLE `client` (
   `ClientID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `UserID` int(11) DEFAULT NULL,
@@ -43,7 +43,7 @@ INSERT INTO `client` (`ClientID`, `Name`, `Contact`, `Description`, `DateAdded`,
 (2, 'XYZ Corp', '+1 (987) 654-3210', 'XYZ Road, San Francisco, A technology company focused on hardware manufacturing.', '2023-04-30 13:16:29', ST_GeomFromText('POINT(-15.791495 35.007271)')),
 (4, 'LOOP', '+1 (123) 443-4495', 'LOOP Street, Florida, A technology company focused on Artificial Intelligence.', '2023-04-30 13:39:28', ST_GeomFromText('POINT(-15.788243 35.004224)'));
 
--- squad table --
+-- 4. squad table --
 CREATE TABLE `squad` (
   `SquadID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `SquadName` varchar(50) DEFAULT NULL,
@@ -60,7 +60,7 @@ INSERT INTO `squad` (`SquadID`, `SquadName`, `Description`, `ClientID`, `DateAdd
 (4, 'Team Delta', 'Intelligence gathering unit', 2, '2023-04-30 15:10:42'),
 (5, 'Team Echo', 'Underwater operations team', 1, '2023-04-30 15:10:42');
 
--- vehicle table --
+-- 5. vehicle table --
 CREATE TABLE `vehicle` (
   `VehicleID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `RegistrationNumber` int(11) DEFAULT NULL,
@@ -69,7 +69,14 @@ CREATE TABLE `vehicle` (
   FOREIGN KEY (SquadID) REFERENCES squad (SquadID)
 );
 
--- k9 table --
+INSERT INTO `vehicle` (`VehicleID`, `RegistrationNumber`, `SquadID`, `DateAdded`) VALUES 
+('1', '23999', '1', current_timestamp()), 
+('2', '44234', '2', current_timestamp()), 
+('3', '31234', '3', current_timestamp()),
+('4', '33213', '4', current_timestamp()),
+('5', '55634', '5', current_timestamp());
+
+-- 6. k9 table --
 CREATE TABLE `k9` (
   `k9ID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `Breed` text NOT NULL,
@@ -78,7 +85,14 @@ CREATE TABLE `k9` (
   FOREIGN KEY (SquadID) REFERENCES squad (SquadID)
 );
 
--- objectives table --
+INSERT INTO `k9` (`k9ID`, `Breed`, `SquadID`, `DateAdded`) VALUES 
+('1', 'German Shepard', '1', current_timestamp()), 
+('2', 'Doberman', '2', current_timestamp()), 
+('3', 'Golden Retriever', '3', current_timestamp()), 
+('4', 'Blood Hound', '4', current_timestamp()), 
+('5', 'Bulldog', '5', current_timestamp());
+
+-- 7. objectives table --
 CREATE TABLE `objectives` (
   `ObjectiveID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `SquadID` int(11) DEFAULT NULL,
@@ -99,7 +113,7 @@ INSERT INTO `objectives` (`ObjectiveID`, `SquadID`, `Title`, `Activity`, `FromTi
 (6, 1, 'Develop New Product', 'Research and Development', '2023-04-19 10:00:00', '2023-04-19 18:00:00', 'Research Center', '2023-04-27 18:59:12'),
 (7, 1, 'Inspection', 'Look around the perimeter for suspecious activity', '2023-05-01 00:00:00', '2023-05-02 00:00:00', 'Client residence', '2023-04-30 07:26:03');
 
--- unit table --
+-- 8. unit table --
 CREATE TABLE `unit` (
   `UnitID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `UnitName` varchar(50) DEFAULT NULL,
@@ -116,7 +130,7 @@ INSERT INTO `unit` (`UnitID`, `UnitName`, `Description`, `SquadID`, `DateAdded`)
 (4, 'Mike Hamond', 'Good with mechanism and very handy', 1, '2023-08-30 14:56:31'),
 (5, 'Bob King', 'Good and leading a team and strong in charge', 1, '2023-08-30 14:56:31');
 
--- report table --
+-- 9. report table --
 CREATE TABLE `report` (
   `ReportID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `ObjectiveID` int(11) DEFAULT NULL,
@@ -132,7 +146,7 @@ INSERT INTO `report` (`ReportID`, `ObjectiveID`, `Report`, `Date`) VALUES
 (4, 5, 'Unit 4 failed to complete mission due to equipment malfunction', '2023-04-26 14:56:31'),
 (5, 6, 'Unit 1 encountered enemy fire, mission objectives not achieved', '2023-04-26 14:56:31');
 
--- payments table --
+-- 10. payments table --
 CREATE TABLE `payments` (
   `PaymentID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `UnitID` int(11) NOT NULL,
@@ -142,7 +156,14 @@ CREATE TABLE `payments` (
   FOREIGN KEY (UnitID) REFERENCES unit (UnitID)
 ); 
 
--- media table -- 
+INSERT INTO `payments` (`PaymentID`, `UnitID`, `Role`, `Amount`, `Date`) VALUES 
+('1', '1', 'Guard', '50000', current_timestamp()), 
+('2', '2', 'Guard', '50000', current_timestamp()), 
+('3', '3', 'Guard', '50000', current_timestamp()), 
+('4', '4', 'Guard', '50000', current_timestamp()), 
+('5', '5', 'Leader', '75000', current_timestamp());
+
+-- 11. media table -- 
 CREATE TABLE `media` (
   `MediaID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `path` text NOT NULL,
@@ -151,7 +172,15 @@ CREATE TABLE `media` (
   FOREIGN KEY (ObjectiveID) REFERENCES objectives (ObjectiveID)
 );
 
--- Alarm table --
+INSERT INTO `media` (`MediaID`, `path`, `date`, `ObjectiveID`) VALUES 
+('1', '../media/mission_1_1', current_timestamp(), '7'), 
+('2', '../media/mission_1_2', current_timestamp(), '7'), 
+('3', '../media/mission_1_3', current_timestamp(), '7'), 
+('4', '../media/mission_1_4', current_timestamp(), '7'), 
+('5', '../media/mission_1_5', current_timestamp(), '7'), 
+('6', '../media/mission_1_6', current_timestamp(), '7');
+
+-- 12. Alarm table --
 CREATE TABLE `alarm` (
   `AlarmID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `ClientID` int(11) NOT NULL,
@@ -160,7 +189,11 @@ CREATE TABLE `alarm` (
   FOREIGN KEY (ClientID) REFERENCES client (ClientID)
 );
 
--- user code table --
+INSERT INTO `alarm` (`AlarmID`, `ClientID`, `Status`, `date`) VALUES 
+('1', '4', 'Alert!', current_timestamp()), 
+('2', '5', 'Alert!', current_timestamp());
+
+-- 13. user code table --
 CREATE TABLE `usercode` (
   `UsercodeID`int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `ClientID` int(11) NOT NULL,
@@ -169,7 +202,11 @@ CREATE TABLE `usercode` (
   FOREIGN KEY (ClientID) REFERENCES client (ClientID)
 );
 
--- announcements table --
+INSERT INTO `usercode` (`UsercodeID`, `ClientID`, `Code`, `date`) VALUES 
+('1', '5', 'xyzabcd', current_timestamp()), 
+('2', '4', 'abcdxyz', current_timestamp());
+
+-- 14. announcements table --
 CREATE TABLE `announcements` (
   `AnnouncementID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `Title` text NOT NULL,
@@ -182,7 +219,7 @@ INSERT INTO `announcements` (`AnnouncementID`, `Title`, `Message`, `Date`) VALUE
 (2, 'Payments', 'A new payment system is under development, we will let you know once its ready. This will let you submit you recipt number for each payment for confimation', '2023-08-26 14:56:31'),
 (3, 'Profile', 'A profile section is also under development to personalize your experience on the system, we will let you know when its ready.', '2023-08-26 14:56:31');
 
--- Client payments table --
+-- 15. Client payments table --
 CREATE TABLE `clientpayments` (
   `PaymentID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `ClientID` int NOT NULL,
@@ -191,7 +228,10 @@ CREATE TABLE `clientpayments` (
   FOREIGN KEY (ClientID) REFERENCES client (ClientID)
 );
 
-INSERT INTO `clientpayments` (`PaymentID`, `ClientID`, `Amount`, `Date`) VALUES
-(1, 1, 50000, '2023-07-30 14:56:31'),
-(2, 2, 50000, '2023-08-30 14:56:31'),
-(3, 1, 50000, '2023-08-30 14:56:31');
+INSERT INTO `clientpayments` (`PaymentID`, `ClientID`, `Amount`, `Date`) VALUES 
+('1', '5', '20000', current_timestamp()), 
+('2', '5', '60000', current_timestamp()), 
+('3', '5', '20000', current_timestamp()), 
+('4', '4', '50000', current_timestamp()), 
+('5', '4', '20000', current_timestamp()), 
+('6', '4', '30000', current_timestamp());
